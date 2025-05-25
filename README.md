@@ -1,12 +1,62 @@
-# React + Vite
+# CoreUp 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**CoreUp** is a modern investment platform that connects startups with investors and job seekers. Built with **React + Vite**, it aims to streamline the investment process with a user-friendly experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📁 Project Structure
 
-## Expanding the ESLint configuration
+```
+src/
+│
+├── assets/         # Images, icons, etc.
+├── components/     # Reusable UI components
+├── hooks/          # Custom React hooks
+├── layouts/        # Page layouts
+├── pages/          # Page components (e.g., Home, About)
+├── routes/         # App routing logic
+├── services/       # API requests and external services
+├── store/          # App state management (e.g., Redux)
+└── utils/          # Utility functions
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ⚙️ Tech Stack
+
+- **React**
+- **Vite**
+- **JavaScript**
+- **React Router**
+- **State Management**
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repository
+git clone https://github.com/Mahmoudramadan21/CoreUp.git
+
+# Navigate to the project
+cd CoreUp
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+---
+
+## 🤝 Team
+
+- **Mahmoud Ramadan** – Frontend Developer
+- **Hager Zain** – Frontend Developer
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
