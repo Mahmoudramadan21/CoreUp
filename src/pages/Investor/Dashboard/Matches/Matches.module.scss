@@ -1,0 +1,50 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * Matches page styles
+ * Defines styling for the Matches page displaying investment opportunities
+ * Uses BEM methodology, global variables, and mixins for consistency
+ * Accessibility Note: Includes visually hidden headings for screen readers
+ */
+
+.matches {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch);
+
+  // Box Model
+  padding: vars.$spacing-medium;
+  max-width: vars.$breakpoint-desktop;
+  margin: 0 auto;
+
+  &__visuallyHidden {
+    // Layout
+    position: absolute;
+    width: 1px;
+    height: 1px;
+
+    // Box Model
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  &__opportunities {
+    // Layout
+    width: 100%;
+  }
+
+  &__grid {
+    // Layout
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(vars.$card-min-width, 1fr));
+    gap: vars.$spacing-medium;
+
+    // Responsive
+    @include mixins.respond-to("mobile") {
+      gap: vars.$spacing-small;
+    }
+  }
+}

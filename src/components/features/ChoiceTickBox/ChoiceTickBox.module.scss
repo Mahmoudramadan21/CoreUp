@@ -1,0 +1,54 @@
+$spacing-small: 6px;
+$font-size-body: 14px;
+$color-text-dark: #324054;
+$color-primary: #0c63e7;
+
+.choiceTickBox {
+  display: flex;
+  align-items: center;
+  gap: $spacing-small;
+
+  &__input {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #bbb5b5;
+    border: 2px solid #bbb5b5;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+
+    &:checked {
+      background-color: #fff;
+
+      &::after {
+        content: "\2713"; // Unicode for checkmark
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #bbb5b5;
+        background-color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__label {
+    font-size: 1rem;
+    color: #333333;
+    cursor: pointer;
+    user-select: none;
+
+    .choiceTickBox__input:disabled + & {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

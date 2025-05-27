@@ -1,0 +1,99 @@
+/**
+ * Card.module.scss
+ *
+ * Styles for the Card component using CSS Modules.
+ * Defines styling for content cards with startup and investor variants using BEM methodology.
+ * Integrates with global variables and mixins for consistency.
+ * Accessibility Note: Ensures sufficient contrast for text.
+ *
+ * Author: Mahmoud Ramadan
+ * Created: June 2025
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins" as mixins;
+
+/* Card block */
+.card {
+  /* Layout */
+  @include mixins.flex(column, flex-start, flex-start, vars.$spacing-medium);
+
+  /* Box Model */
+  flex: 1;
+  padding: clamp(2rem, 4vw, 3rem);
+  border: none;
+  border-radius: vars.$border-radius-large;
+  width: 100%;
+  background-color: vars.$color-background-white;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to(mobile, max) {
+    align-items: center;
+    gap: vars.$spacing-small;
+    text-align: center;
+    border-radius: 0;
+  }
+
+  /* Modifier: Startup variant */
+  &--startup {
+    /* Visual */
+    background: vars.$startup-card-bg;
+  }
+
+  /* Modifier: Investor variant */
+  &--investor {
+    /* Visual */
+    background: vars.$investor-card-bg;
+  }
+
+  /* Element: Title */
+  &__title {
+    /* Typography */
+    @include mixins.typography(
+      clamp(1.6rem, 4vw, 2.4rem),
+      vars.$font-weight-bold,
+      1.2
+    );
+    color: vars.$color-text-dark;
+    margin: 0;
+  }
+
+  /* Element: Subtitle */
+  &__subtitle {
+    /* Typography */
+    @include mixins.typography(
+      vars.$font-size-body,
+      vars.$font-weight-bold,
+      1.4
+    );
+    color: vars.$color-text;
+    margin: 0;
+  }
+
+  /* Element: Description */
+  &__description {
+    /* Box Model */
+    max-width: 25.625rem; /* 410px */
+
+    /* Typography */
+    @include mixins.typography(
+      vars.$font-size-body,
+      vars.$font-weight-regular,
+      1.4
+    );
+    color: vars.$color-text-gray-muted;
+    margin: 0;
+  }
+
+  /* Element: Buttons container */
+  &__buttons {
+    /* Layout */
+    @include mixins.flex(row, flex-start, center, vars.$spacing-xsmall);
+
+    /* Style secondary button */
+    > *:last-child {
+      background-color: transparent;
+      color: vars.$color-text-gray;
+    }
+  }
+}

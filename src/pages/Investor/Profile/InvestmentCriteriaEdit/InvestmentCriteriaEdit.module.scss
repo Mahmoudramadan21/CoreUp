@@ -1,0 +1,211 @@
+/**
+ * InvestmentCriteriaEdit.module.scss
+ *
+ * Styles for the InvestmentCriteriaEdit component using CSS Modules.
+ * Defines layout, form, checkbox groups, slider, and button styles with responsive adjustments.
+ * Integrates with global variables and mixins for consistency.
+ *
+ * Author: Mahmoud Ramadan
+ * Created: June 2025
+ */
+
+@use "sass:color";
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/****************************
+ * Investment Criteria Edit Container
+ * Main wrapper for the investment criteria edit form, centered with responsive padding.
+ ****************************/
+.investmentCriteriaEdit {
+  // Box Model: Constrain width and add padding
+  max-width: 800px;
+  padding: vars.$spacing-large calc(vars.$spacing-large * 3);
+  border-radius: vars.$border-radius-small;
+
+  // Visual: Apply background color
+  background-color: vars.$color-content-bg;
+
+  // Responsive: Reduce padding on tablet screens
+  @include mixins.respond-to(tablet) {
+    padding: vars.$spacing-large calc(vars.$spacing-large * 1);
+  }
+
+  // Responsive: Full-width with smaller padding on mobile
+  @include mixins.respond-to(mobile) {
+    margin: 0 auto;
+    padding: vars.$spacing-medium;
+    max-width: 100%;
+  }
+
+  /****************************
+   * Form
+   * Styles for the investment criteria edit form with consistent spacing.
+   ****************************/
+  &__form {
+    // Box Model: Full-width form
+    width: 100%;
+  }
+
+  /****************************
+   * Fieldset
+   * Groups all form elements with consistent spacing and no border.
+   ****************************/
+  &__fieldset {
+    // Layout: Vertical stack with spacing
+    @include mixins.flex(column, flex-start, stretch, 1.6rem);
+
+    // Box Model: Remove default border and spacing
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /****************************
+   * Sub-Fieldset
+   * Groups individual sections (e.g., Locations, Stages) with no border.
+   ****************************/
+  &__subFieldset {
+    // Layout: Vertical stack
+    display: flex;
+    flex-direction: column;
+
+    // Box Model: Spacing and no border
+    gap: vars.$spacing-medium;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /****************************
+   * Visually Hidden Elements
+   * Hides elements visually while keeping them accessible to screen readers.
+   ****************************/
+  &__visuallyHidden {
+    // Accessibility: Hide visually but keep accessible
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  /****************************
+   * Section Title
+   * Titles for each section (visible alternative to legend).
+   ****************************/
+  &__sectionTitle {
+    // Typography: Bold for emphasis
+    @include mixins.typography(vars.$font-size-base, vars.$font-weight-bold);
+    color: vars.$color-text-light;
+  }
+
+  /****************************
+   * Checkbox Group
+   * Container for checkbox options with flexible layout.
+   ****************************/
+  &__checkboxGroup {
+    // Layout: Flexible row with wrapping
+    @include mixins.flex(row, flex-start, flex-start, 1rem);
+    flex-wrap: wrap;
+
+    // Box Model: Constrain width
+    max-width: 440px;
+    padding-right: vars.$spacing-small;
+
+    // Style the first child (Select All)
+    & > :first-child {
+      width: 100%;
+    }
+
+    // Scrollbar styles (cross-browser)
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: vars.$color-background-gray;
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: vars.$blue;
+      border-radius: 3px;
+    }
+
+    // Firefox scrollbar
+    scrollbar-width: thin;
+    scrollbar-color: vars.$blue vars.$color-background-gray;
+  }
+
+  /****************************
+   * Error Message
+   * Feedback message for validation errors.
+   ****************************/
+  &__error {
+    // Typography: Standard font size
+    @include mixins.typography(vars.$font-size-base);
+    color: vars.$color-error;
+
+    // Box Model: Spacing and rounded corners
+    margin-top: vars.$spacing-small;
+    padding: vars.$padding-small;
+    border-radius: vars.$border-radius-small;
+
+    // Visual: Subtle background for emphasis
+    background-color: rgba(vars.$color-error, 0.1);
+  }
+
+  /****************************
+   * Submit Button
+   * Styles for the form submission button with hover and disabled states.
+   ****************************/
+  &__submitButton {
+    // Layout: Centered content
+    @include mixins.flex(row, center, center);
+
+    // Box Model: Constrain width and add padding
+    margin-top: 3rem;
+    width: 100%;
+    max-width: 200px;
+    padding: vars.$padding-base;
+    border: none;
+    border-radius: vars.$border-radius-small;
+
+    // Typography: Medium weight for readability
+    @include mixins.typography(vars.$font-size-base, vars.$font-weight-medium);
+    color: vars.$white;
+
+    // Visual: Primary button background
+    background-color: vars.$blue;
+    cursor: pointer;
+
+    // Transitions: Smooth opacity change
+    transition: opacity 0.3s ease;
+
+    &:hover:not(:disabled) {
+      opacity: 0.8;
+    }
+
+    &:disabled {
+      background-color: vars.$color-text-gray;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    &:focus {
+      outline: vars.$focus-outline-width vars.$focus-outline-style
+        vars.$focus-outline-color;
+      outline-offset: vars.$focus-outline-offset;
+    }
+
+    // Responsive: Smaller button on mobile
+    @include mixins.respond-to(mobile) {
+      max-width: 150px;
+      padding: vars.$padding-small;
+    }
+  }
+}

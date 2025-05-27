@@ -1,0 +1,111 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * NewsFeed page styles
+ * Defines styling for the NewsFeed page with post input and posts
+ * Uses BEM methodology, global variables, and mixins
+ * Accessibility Note: Ensures high contrast and accessible layouts
+ */
+
+.newsFeed {
+  // Layout
+  @include mixins.flex(column, flex-start, center);
+
+  // Box Model
+  padding: vars.$spacing-medium;
+  max-width: 37.5rem; /* 600px */
+  margin: 0 auto;
+  width: 100%;
+
+  // Typography
+  color: vars.$color-text-dark;
+
+  // Responsive
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+  }
+}
+
+.newsFeed__visuallyHidden {
+  // Layout
+  position: absolute;
+  width: 1px;
+  height: 1px;
+
+  // Box Model
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.newsFeed__inputSection {
+  // Box Model
+  width: 100%;
+  margin-bottom: vars.$spacing-medium;
+}
+
+.newsFeed__posts {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-medium);
+
+  // Box Model
+  width: 100%;
+}
+
+.newsFeed__loading {
+  // Layout
+  width: 100%;
+}
+
+.newsFeed__skeleton {
+  // Box Model
+  height: 10rem; /* 160px */
+  margin-bottom: vars.$spacing-medium;
+  border-radius: vars.$border-radius-small;
+  background-color: vars.$color-background-light;
+
+  // Animation
+  animation: pulse 1.5s infinite;
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.newsFeed__error {
+  // Layout
+  text-align: center;
+
+  // Box Model
+  padding: vars.$spacing-medium;
+  border-radius: vars.$border-radius-small;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-body, vars.$font-weight-regular);
+  color: vars.$color-error;
+}
+
+.newsFeed__noPosts {
+  // Layout
+  text-align: center;
+
+  // Box Model
+  padding: vars.$spacing-medium;
+  border-radius: vars.$border-radius-small;
+  background-color: vars.$color-background-light;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-body, vars.$font-weight-regular);
+  color: vars.$color-text-gray;
+}

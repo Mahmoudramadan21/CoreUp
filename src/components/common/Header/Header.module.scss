@@ -1,0 +1,221 @@
+/**
+ * Header component styles
+ * Defines layout and styling for header, including logo, navigation, and actions
+ * Uses BEM methodology and integrates with global variables/mixins
+ * Accessibility Note: Ensures links are distinguishable with hover/focus styles
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/* Header block */
+.header {
+  /* Layout */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  /* Box Model */
+  padding: vars.$spacing-medium 0;
+  min-height: 5.5rem; /* 88px */
+
+  /* Visual */
+  background-color: vars.$color-background-white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Header container */
+.header__container {
+  /* Layout */
+  @include mixins.flex(row, space-between, center, 0);
+
+  /* Box Model */
+  max-width: 75rem; /* 1200px */
+  margin: 0 auto;
+}
+
+/* Header logo */
+.header__logo {
+  /* Visual */
+  text-decoration: none;
+
+  img {
+    /* Box Model */
+    width: 9.375rem; /* 150px */
+    height: 2.5rem; /* 40px */
+  }
+}
+
+/* Hamburger button (mobile) */
+.header__hamburger {
+  /* Layout */
+  display: none;
+
+  /* Box Model */
+  padding: vars.$spacing-small;
+  border: none;
+
+  /* Visual */
+  background: none;
+
+  /* Transitions */
+  transition: transform 0.3s ease;
+
+  @include mixins.respond-to("tablet", "max") {
+    display: block;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Hamburger icon */
+.header__hamburger-icon {
+  /* Typography */
+  font-size: vars.$font-size-large;
+
+  /* Visual */
+  color: vars.$color-text-dark;
+}
+
+/* Navigation menu */
+.header__nav {
+  /* Layout */
+  @include mixins.flex(row, center, center, vars.$spacing-large);
+  flex-grow: 1;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("tablet", "max") {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background-color: vars.$color-background-white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+
+    &--open {
+      max-height: 30rem; /* 480px */
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+/* Navigation list */
+.header__nav-list {
+  /* Layout */
+  @include mixins.flex(row, center, center, vars.$spacing-large);
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("tablet", "max") {
+    flex-direction: column;
+    gap: vars.$spacing-medium;
+    padding: vars.$spacing-medium;
+  }
+}
+
+/* Navigation item */
+.header__nav-item {
+  /* Box Model */
+  @include mixins.respond-to("tablet", "max") {
+    width: 100%;
+  }
+}
+
+/* Navigation link */
+.header__nav-link {
+  /* Typography */
+  font-size: vars.$font-size-body;
+  font-weight: vars.$font-weight-medium;
+
+  /* Visual */
+  color: vars.$color-text-dark;
+  text-decoration: none;
+
+  /* Transitions */
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: vars.$color-primary;
+  }
+
+  &--active {
+    color: vars.$color-primary;
+  }
+
+  @include mixins.respond-to("tablet", "max") {
+    /* Box Model */
+    padding: vars.$spacing-small 0;
+    display: block;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Actions container */
+.header__actions {
+  /* Layout */
+  @include mixins.flex(row, center, center, vars.$spacing-medium);
+}
+
+/* Desktop actions */
+.header__actions--desktop {
+  @include mixins.respond-to("tablet", "max") {
+    display: none;
+  }
+}
+
+/* Mobile actions */
+.header__actions--mobile {
+  /* Layout */
+  display: none;
+
+  @include mixins.respond-to("tablet", "max") {
+    @include mixins.flex(column, center, center, vars.$spacing-medium);
+    width: 100%;
+    padding: vars.$spacing-medium;
+  }
+}
+
+/* Login link */
+.header__login {
+  /* Typography */
+  font-size: vars.$font-size-body;
+  font-weight: vars.$font-weight-medium;
+
+  /* Visual */
+  color: vars.$color-text-dark;
+  text-decoration: none;
+
+  /* Transitions */
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: vars.$color-primary;
+  }
+
+  @include mixins.respond-to("tablet", "max") {
+    /* Box Model */
+    padding: vars.$spacing-small 0;
+    text-align: center;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}

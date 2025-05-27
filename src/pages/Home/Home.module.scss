@@ -1,0 +1,520 @@
+@use "sass:color";
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins";
+
+// Define custom colors for success cards
+$startup-card-bg: rgba(191, 219, 254, 0.5);
+$startup-card-border: rgba(191, 219, 254, 0.5);
+$investor-card-bg: rgba(254, 243, 200, 0.5);
+$investor-card-border: rgba(254, 243, 200, 0.5);
+$cta-text-muted: rgba(vars.$white, 0.8);
+
+// =========================================================================
+// Hero Section
+// =========================================================================
+.hero {
+  @include mixins.flex(
+    $direction: row,
+    $justify: space-between,
+    $align: center,
+    $gap: vars.$spacing-large
+  );
+  padding: vars.$spacing-large vars.$spacing-medium;
+
+  @include mixins.respond-to("tablet") {
+    @include mixins.flex(
+      $direction: column,
+      $justify: center,
+      $align: center,
+      $gap: vars.$spacing-medium
+    );
+    padding: vars.$spacing-medium vars.$spacing-small;
+  }
+
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+  }
+}
+
+.hero__content {
+  @include mixins.flex(
+    $direction: column,
+    $justify: flex-start,
+    $align: flex-start,
+    $gap: vars.$spacing-medium
+  );
+  max-width: 600px;
+
+  > *:last-child {
+    max-width: 14rem; // Increased slightly for better button sizing
+  }
+
+  @include mixins.respond-to("tablet") {
+    @include mixins.flex(
+      $direction: column,
+      $justify: center,
+      $align: center,
+      $gap: 0.8rem
+    );
+    margin-bottom: 1rem;
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+.hero__title {
+  @include mixins.typography(
+    $size: vars.$font-size-title,
+    $weight: vars.$font-weight-bold
+  );
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: vars.$color-text-dark;
+
+  &--highlight {
+    color: vars.$color-primary;
+  }
+
+  @include mixins.respond-to("mobile") {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+}
+
+.hero__subtitle {
+  @include mixins.typography(
+    $size: vars.$font-size-body,
+    $weight: vars.$font-weight-regular,
+    $line-height: 1.5
+  );
+  color: vars.$color-text-gray;
+  max-width: 500px;
+
+  @include mixins.respond-to("tablet") {
+    max-width: 100%;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+  }
+
+  @include mixins.respond-to("mobile") {
+    font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  }
+}
+
+.hero__graphic {
+  @include mixins.flex($direction: row, $justify: flex-end, $align: center);
+  max-width: 50%;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @include mixins.respond-to("tablet") {
+    @include mixins.flex($direction: row, $justify: center, $align: center);
+    max-width: 80%;
+  }
+
+  @include mixins.respond-to("mobile") {
+    max-width: 100%;
+  }
+}
+
+// =========================================================================
+// Success Section
+// =========================================================================
+.success {
+  padding: vars.$spacing-large 0;
+
+  @include mixins.respond-to("tablet") {
+    padding: vars.$spacing-medium 0;
+  }
+
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small 0;
+  }
+}
+
+.success__cards {
+  @include mixins.flex(
+    $direction: row,
+    $justify: space-between,
+    $align: center,
+    $gap: vars.$spacing-large
+  );
+
+  @include mixins.respond-to("tablet") {
+    @include mixins.flex(
+      $direction: column,
+      $justify: center,
+      $align: center,
+      $gap: vars.$spacing-medium
+    );
+  }
+}
+
+.success__card {
+  flex: 1;
+  min-width: vars.$card-min-width;
+  max-width: vars.$card-max-width;
+  padding: vars.$spacing-medium;
+  @include mixins.border-radius(vars.$border-radius-large);
+
+  @include mixins.respond-to("tablet") {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  &--startup {
+    background: linear-gradient(
+      to right,
+      $startup-card-bg 0%,
+      color.adjust($startup-card-bg, $alpha: -0.1) 10%,
+      rgba(vars.$color-background-white, 0.2) 100%
+    );
+    border: 1px solid $startup-card-border;
+  }
+
+  &--investor {
+    background: linear-gradient(
+      to left,
+      $investor-card-bg 0%,
+      color.adjust($investor-card-bg, $alpha: -0.2) 30%,
+      rgba(vars.$color-background-white, 0.2) 100%
+    );
+    border: 1px solid $investor-card-border;
+  }
+}
+
+// =========================================================================
+// How It Works Section
+// =========================================================================
+.how-it-works {
+  padding: vars.$spacing-large 0;
+  background-color: vars.$color-background-light;
+
+  @include mixins.respond-to("tablet") {
+    padding: vars.$spacing-medium 0;
+  }
+
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small 0;
+  }
+}
+
+.how-it-works-container {
+  @include mixins.flex($direction: column, $justify: center, $align: center);
+}
+
+.how-it-works__title {
+  @include mixins.typography(
+    $size: vars.$font-size-title,
+    $weight: vars.$font-weight-bold
+  );
+  text-align: center;
+  margin-bottom: vars.$spacing-large;
+  color: vars.$color-text-dark;
+
+  @include mixins.respond-to("mobile") {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+}
+
+.how-it-works__steps {
+  @include mixins.flex(
+    $direction: row,
+    $justify: space-between,
+    $align: center,
+    $gap: vars.$spacing-medium
+  );
+  width: 100%;
+
+  > *:first-child {
+    padding-left: 0;
+  }
+
+  > *:last-child {
+    padding-right: 0;
+  }
+
+  @include mixins.respond-to("desktop") {
+    width: 100%;
+    @include mixins.flex(
+      $direction: column,
+      $justify: center,
+      $align: center,
+      $gap: vars.$spacing-small
+    );
+  }
+}
+
+.how-it-works__step-connector {
+  right: -20%; // Adjusted for better alignment
+  max-width: 100px; // Limit connector size
+
+  @include mixins.respond-to("tablet") {
+    right: -30%;
+    transform: scale(0.7);
+  }
+
+  @include mixins.respond-to("mobile") {
+    display: none; // Hide connectors on mobile to avoid overlap
+  }
+
+  &--reversed {
+    top: 20%;
+
+    @include mixins.respond-to("tablet") {
+      top: 15%;
+    }
+  }
+}
+
+// =========================================================================
+// Testimonials Section
+// =========================================================================
+.testimonials {
+  padding: vars.$spacing-large vars.$spacing-medium;
+
+  @include mixins.respond-to("tablet") {
+    padding: vars.$spacing-medium vars.$spacing-small;
+  }
+
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+  }
+}
+
+.testimonials__header {
+  @include mixins.flex($direction: column, $justify: center, $align: center);
+  margin-bottom: vars.$spacing-large;
+}
+
+.testimonials__title {
+  @include mixins.typography(
+    $size: vars.$font-size-title,
+    $weight: vars.$font-weight-bold
+  );
+  color: vars.$color-text-dark;
+  margin-bottom: vars.$spacing-medium;
+
+  @include mixins.respond-to("mobile") {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+}
+
+.testimonials__description {
+  @include mixins.typography(
+    $size: vars.$font-size-body,
+    $weight: vars.$font-weight-regular
+  );
+  color: vars.$color-text-gray;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @include mixins.respond-to("tablet") {
+    max-width: 80%;
+  }
+
+  @include mixins.respond-to("mobile") {
+    font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+    max-width: 100%;
+  }
+}
+
+.testimonials__list {
+  @include mixins.flex(
+    $direction: row,
+    $justify: center,
+    $align: center,
+    $gap: 1.5rem
+  );
+
+  @include mixins.respond-to("desktop") {
+    @include mixins.flex(
+      $direction: row,
+      $justify: center,
+      $align: center,
+      $gap: 1.5rem,
+      $wrap: wrap
+    );
+  }
+}
+
+// =========================================================================
+// Pricing Section
+// =========================================================================
+.pricing {
+  @include mixins.flex($direction: column, $justify: center, $align: center);
+  position: relative;
+  padding: vars.$spacing-large vars.$spacing-medium;
+  background-color: vars.$color-background-white;
+
+  @include mixins.respond-to("tablet") {
+    padding: vars.$spacing-medium vars.$spacing-small;
+  }
+
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+  }
+}
+
+.pricing__plans {
+  /* Layout */
+  @include mixins.flex(
+    $direction: row,
+    $justify: space-evenly,
+    $align: center,
+    $gap: vars.$spacing-medium
+  );
+
+  /* Box Model*/
+  width: 100%;
+
+  @include mixins.respond-to("desktop") {
+    flex-wrap: wrap;
+    gap: vars.$spacing-large;
+  }
+}
+
+.pricing__blob {
+  position: absolute;
+  top: -15px;
+  left: -40px;
+  width: 150px;
+  height: 120px;
+  z-index: 1;
+
+  @include mixins.respond-to("desktop") {
+    width: 100px;
+    height: 80px;
+    top: 0;
+    left: 140px;
+  }
+
+  @include mixins.respond-to("tablet") {
+    top: -10px;
+    left: 35px;
+  }
+
+  @include mixins.respond-to("mobile") {
+    width: 80px;
+    height: 60px;
+    top: -10px;
+    left: -15px;
+  }
+}
+
+.pricing__spiral {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+
+  @include mixins.respond-to("desktop") {
+    display: none;
+  }
+
+  &--left {
+    top: 20%;
+    left: 15%;
+
+    @include mixins.respond-to("tablet") {
+      left: 5%;
+    }
+
+    @include mixins.respond-to("mobile") {
+      left: 0;
+    }
+  }
+
+  &--right {
+    top: 20%;
+    right: 15%;
+
+    @include mixins.respond-to("tablet") {
+      right: 5%;
+    }
+
+    @include mixins.respond-to("mobile") {
+      right: 0;
+    }
+  }
+}
+
+// =========================================================================
+// CTA Section
+// =========================================================================
+.cta {
+  @include mixins.flex($direction: column, $justify: center, $align: center);
+  padding: vars.$spacing-large vars.$spacing-medium;
+
+  @include mixins.respond-to("tablet") {
+    padding: vars.$spacing-medium vars.$spacing-small;
+  }
+
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+    padding-bottom: 0;
+  }
+}
+
+.cta__content {
+  @include mixins.flex(
+    $direction: column,
+    $justify: center,
+    $align: center,
+    $gap: vars.$spacing-medium
+  );
+  width: 100%;
+  padding: vars.$spacing-large;
+  background: linear-gradient(vars.$blue 0%, #023275 100%);
+  @include mixins.border-radius(vars.$border-radius-large);
+
+  @include mixins.respond-to("tablet") {
+    padding: vars.$spacing-medium;
+  }
+
+  @include mixins.respond-to("mobile") {
+    width: 115%;
+    padding: vars.$spacing-xlarge;
+    border-radius: vars.$border-radius-small;
+    text-align: center;
+    gap: vars.$spacing-medium;
+  }
+
+  > *:last-child {
+    max-width: 12rem;
+  }
+}
+
+.cta__title {
+  @include mixins.typography(
+    $size: vars.$font-size-title,
+    $weight: vars.$font-weight-bold
+  );
+  color: vars.$color-background-white;
+  margin-bottom: vars.$spacing-medium;
+
+  @include mixins.respond-to("mobile") {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 0;
+  }
+}
+
+.cta__description {
+  @include mixins.typography(
+    $size: vars.$font-size-body,
+    $weight: vars.$font-weight-medium
+  );
+  color: $cta-text-muted;
+  max-width: 400px;
+  margin-bottom: vars.$spacing-medium;
+
+  @include mixins.respond-to("tablet") {
+    max-width: 80%;
+  }
+
+  @include mixins.respond-to("mobile") {
+    font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,34 @@
+/**
+ * InvestorLayout component styles
+ * Defines styling for general investor pages
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures sufficient contrast
+ */
+
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins";
+
+/* InvestorLayout block */
+.investorLayout {
+  /* Layout */
+  @include mixins.flex(column, stretch, stretch);
+  min-height: 100vh;
+}
+
+/* Main element */
+.investorLayout__main {
+  /* Layout */
+  @include mixins.flex($direction: column, $gap: vars.$spacing-medium);
+
+  > * {
+    /* Box Model */
+    width: 100%;
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    padding: vars.$spacing-small;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+}

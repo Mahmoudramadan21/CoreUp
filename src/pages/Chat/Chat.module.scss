@@ -1,0 +1,164 @@
+/**
+ * Styles for the Chat component
+ * Defines styling for the chat header, messages container, and input footer
+ * Uses global variables from _variables.scss and mixins from _mixins.scss
+ * Optimized for performance, accessibility, and responsiveness
+ */
+
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins";
+
+/* Header for the chat area */
+.chatHeader {
+  @include mixins.flex(
+    $direction: row,
+    $justify: space-between,
+    $align: center
+  );
+  padding: vars.$spacing-medium;
+  border-bottom: 1px solid vars.$color-auth-border;
+
+  /* Mobile screen adjustments */
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+    flex-direction: column;
+    gap: vars.$spacing-small;
+  }
+
+  /* Extra small screen adjustments */
+  @include mixins.respond-to("xsmall") {
+    padding: vars.$spacing-xsmall;
+  }
+}
+
+/* User info container styles */
+.chatHeaderUser {
+  @include mixins.flex(
+    $direction: row,
+    $align: center,
+    $gap: vars.$spacing-small
+  );
+}
+
+/* Avatar image styles */
+.chatHeaderAvatar {
+  width: vars.$avatar-size;
+  height: vars.$avatar-size;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* User name styles */
+.chatHeaderName {
+  @include mixins.typography(
+    $size: vars.$font-size-base,
+    $weight: vars.$font-weight-bold
+  );
+  color: vars.$color-text-dark;
+  white-space: nowrap;
+
+  /* Responsive typography for mobile screens */
+  @include mixins.respond-to("mobile") {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+  }
+
+  /* Extra small screen adjustments */
+  @include mixins.respond-to("xsmall") {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+  }
+}
+
+/* Actions container styles */
+.chatHeaderActions {
+  @include mixins.flex($direction: row, $gap: vars.$spacing-small);
+
+  /* Mobile screen adjustments */
+  @include mixins.respond-to("mobile") {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* Action button styles */
+.chatHeaderAction {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: vars.$padding-xsmall;
+  transition: opacity 0.2s ease;
+
+  &:focus {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Trash action button styles */
+.chatHeaderActionTrash {
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+/* Info action button styles */
+.chatHeaderActionInfo {
+  @include mixins.typography(
+    $size: vars.$font-size-body,
+    $weight: vars.$font-weight-bold
+  );
+  color: vars.$white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: vars.$color-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+/* Action icon styles */
+.chatHeaderActionIcon {
+  width: vars.$icon-size-small;
+  height: vars.$icon-size-small;
+  display: block;
+}
+
+/* Container for the messages */
+.messagesContainer {
+  flex: 1;
+  padding: vars.$spacing-medium;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+
+  /* Mobile screen adjustments */
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+  }
+
+  /* Extra small screen adjustments */
+  @include mixins.respond-to("xsmall") {
+    padding: vars.$spacing-xsmall;
+  }
+}
+
+/* Footer for the chat area */
+.chatFooter {
+  padding: vars.$spacing-medium;
+  border-top: 1px solid vars.$color-auth-border;
+
+  /* Mobile screen adjustments */
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+  }
+
+  /* Extra small screen adjustments */
+  @include mixins.respond-to("xsmall") {
+    padding: vars.$spacing-xsmall;
+  }
+}

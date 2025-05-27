@@ -1,0 +1,47 @@
+.verifyCode {
+  // Layout
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Box Model
+  width: 100%;
+  max-width: 400px;
+
+  // Title
+  &__title {
+    // Typography
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    text-align: center;
+
+    // Visual
+    color: #333;
+  }
+
+  // Subtitle
+  &__subtitle {
+    // Box Model
+    margin: 4px 28px 24px 28px;
+
+    // Typography
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+
+    // Visual
+    color: #666;
+  }
+
+  // Form
+  &__form {
+    // Layout
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    // Box Model
+    width: 100%;
+  }
+}

@@ -1,0 +1,126 @@
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins" as mixins;
+
+// Dropdown container
+.multiSelectDropdown {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-xsmall);
+
+  // Box Model
+  border: none;
+  width: 100%;
+
+  // Typography
+  font-family: vars.$font-family-base;
+  text-align: left;
+
+  // Responsive adjustments
+  @include mixins.respond-to(tablet) {
+    width: 100%;
+  }
+
+  // Label for the dropdown
+  &__label {
+    // Typography
+    @include mixins.typography(vars.$font-size-base, vars.$font-weight-bold);
+    color: vars.$color-text-dark;
+
+    // Box Model
+    margin-bottom: vars.$spacing-xsmall;
+  }
+
+  // Select component styling
+  &__select {
+    .multiSelectDropdown__control {
+      // Box Model
+      border: 1px solid vars.$color-border-input;
+      padding: vars.$padding-input;
+      @include mixins.border-radius;
+
+      // Visual
+      box-shadow: none;
+
+      // Transitions
+      transition: border-color 0.3s ease;
+
+      &:hover {
+        border-color: vars.$color-primary-hover;
+      }
+
+      &.multiSelectDropdown__control--is-focused {
+        // Box Model
+        border-color: vars.$color-primary;
+        outline: vars.$focus-outline-width solid vars.$focus-outline-color;
+        outline-offset: vars.$focus-outline-offset;
+
+        // Visual
+        box-shadow: 0 0 5px rgba(vars.$color-primary, 0.3);
+      }
+    }
+
+    .multiSelectDropdown__menu {
+      // Box Model
+      padding: 0.7rem;
+      @include mixins.border-radius;
+      max-height: 200px;
+
+      // Visual
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      // Layout
+      overflow-y: auto;
+      z-index: 10;
+    }
+
+    .multiSelectDropdown__option {
+      // Box Model
+      padding: vars.$padding-base;
+
+      // Visual
+      cursor: pointer;
+
+      &.multiSelectDropdown__option--is-focused {
+        background-color: vars.$color-background-light;
+      }
+
+      &.multiSelectDropdown__option--is-selected {
+        background-color: vars.$color-primary;
+        color: vars.$white;
+      }
+    }
+
+    .multiSelectDropdown__multi-value {
+      // Box Model
+      padding: 2px 6px;
+      @include mixins.border-radius(12px);
+
+      // Visual
+      background-color: vars.$color-background-light;
+
+      .multiSelectDropdown__multi-value__label {
+        // Typography
+        color: vars.$color-text-dark;
+      }
+
+      .multiSelectDropdown__multi-value__remove {
+        // Visual
+        cursor: pointer;
+
+        &:hover {
+          background-color: vars.$color-primary-hover;
+          color: vars.$white;
+        }
+      }
+    }
+
+    .multiSelectDropdown__placeholder {
+      // Typography
+      color: vars.$color-text-gray-muted;
+    }
+
+    .multiSelectDropdown__clear-indicator {
+      // Visual
+      cursor: pointer;
+    }
+  }
+}

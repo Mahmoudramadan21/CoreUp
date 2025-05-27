@@ -1,0 +1,122 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * NewsFeedPostInput component styles
+ * Defines styling for post input form
+ * Uses BEM methodology and integrates with global variables/mixins
+ * Accessibility Note: Ensures visible focus states and sufficient contrast
+ */
+
+.newsFeedPostInput {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-small);
+
+  // Box Model
+  padding: vars.$spacing-medium;
+  margin: vars.$spacing-medium 0;
+  border-radius: vars.$border-radius-small;
+
+  // Visual
+  background-color: vars.$color-background-white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: vars.$color-text-dark;
+
+  // Responsive
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+  }
+}
+
+.newsFeedPostInput__textarea {
+  // Box Model
+  width: 100%;
+  min-height: vars.$input-height;
+  padding: vars.$padding-input;
+  border: 1px solid vars.$color-border-input;
+  border-radius: vars.$border-radius-small;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-body, vars.$font-weight-regular);
+  line-height: 1.5;
+
+  // Visual
+  resize: vertical;
+
+  // Transitions
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:focus-visible {
+    outline: none;
+    border-color: vars.$color-primary;
+    box-shadow: 0 0 0 2px rgba(vars.$color-primary, 0.2);
+  }
+
+  &::placeholder {
+    color: vars.$color-text-gray;
+  }
+}
+
+.newsFeedPostInput__actions {
+  // Layout
+  @include mixins.flex(row, flex-start, center, vars.$spacing-small);
+
+  button:last-child {
+    height: fit-content;
+    padding: vars.$padding-small !important;
+  }
+}
+
+.newsFeedPostInput__actionButton {
+  // Layout
+  @include mixins.flex(row, center, center, vars.$spacing-xsmall);
+
+  // Box Model
+  padding: vars.$padding-small;
+  border: none;
+  border-radius: vars.$border-radius-small;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-small, vars.$font-weight-medium);
+  color: vars.$color-text-dark;
+
+  // Visual
+  background-color: vars.$color-background-light;
+  cursor: pointer;
+
+  // Transitions
+  transition: background-color 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background-color: vars.$color-background-gray;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+
+  // Responsive
+  @include mixins.respond-to("mobile") {
+    padding: vars.$padding-xsmall;
+    @include mixins.typography(vars.$font-size-small);
+  }
+}
+
+.newsFeedPostInput__icon {
+  // Box Model
+  width: 1rem;
+  height: 1rem;
+
+  // Responsive
+  @include mixins.respond-to("mobile") {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}

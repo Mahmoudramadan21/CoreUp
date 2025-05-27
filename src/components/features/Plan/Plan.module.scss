@@ -1,0 +1,184 @@
+/**
+ * Plan component styles
+ * Defines styling for pricing plans
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures sufficient contrast and focus states
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/* Plan block */
+.plan {
+  /* Layout */
+  @include mixins.flex(column, flex-start, stretch, 1.4rem);
+  position: relative;
+  z-index: 2;
+
+  /* Box Model */
+  width: 100%;
+  max-width: 21.875rem; /* 350px */
+  min-height: 32.5rem; /* 520px */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem; /* 8px */
+
+  /* Typography */
+  text-align: left;
+
+  /* Visual */
+  background-color: vars.$color-background-white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  transition: transform 0.2s ease;
+
+  /* Modifier: recommended */
+  &--recommended {
+    /* Visual */
+    transform: scale(1.05);
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    /* Box Model */
+    max-width: 100%;
+
+    /* Typography */
+    text-align: center;
+  }
+}
+
+/* Recommended tag element */
+.plan__recommendedTag {
+  /* Layout */
+  position: absolute;
+  top: -0.9375rem; /* -15px */
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* Box Model */
+  padding: 0.4375rem 0.9375rem; /* 7px 15px */
+  border-radius: vars.$border-radius-small;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: 0.875rem;
+  font-weight: vars.$font-weight-medium;
+  text-align: center;
+
+  /* Visual */
+  background-color: vars.$color-primary;
+  color: vars.$white;
+  z-index: 3;
+}
+
+/* Header element */
+.plan__header {
+  /* Box Model */
+  padding: 1.8rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Title element */
+.plan__title {
+  /* Box Model */
+  margin: 0;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-title;
+  font-weight: vars.$font-weight-medium;
+  color: vars.$color-text-dark;
+}
+
+/* Description element */
+.plan__description {
+  /* Box Model */
+  margin: 0.8rem 0;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: 0.875rem;
+  color: vars.$color-text;
+}
+
+/* Price element */
+.plan__price {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, vars.$spacing-small);
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: vars.$font-weight-medium;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    /* Layout */
+    justify-content: center;
+  }
+}
+
+/* Price amount sub-element */
+.plan__priceAmount {
+  /* Typography */
+  color: vars.$color-primary;
+}
+
+/* Price period sub-element */
+.plan__pricePeriod {
+  /* Typography */
+  font-size: 1rem;
+  color: vars.$color-text-gray;
+}
+
+/* Footer element */
+.plan__footer {
+  /* Layout */
+  @include mixins.flex(column, flex-start, stretch, 1rem);
+
+  /* Box Model */
+  padding: 0.7rem 1.8rem 1rem;
+  flex-grow: 1;
+}
+
+/* Features element */
+.plan__features {
+  /* Layout */
+  @include mixins.flex(column, flex-start, flex-start, 1rem);
+
+  /* Box Model */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    /* Layout */
+    align-items: center;
+  }
+}
+
+/* Feature element */
+.plan__feature {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, 0.5rem);
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: 0.875rem;
+  color: vars.$color-text-gray;
+}
+
+/* Check icon element */
+.plan__checkIcon {
+  /* Box Model */
+  width: 1rem; /* 16px */
+  height: 1rem; /* 16px */
+}
+
+/* Button element */
+.plan__button {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center);
+}

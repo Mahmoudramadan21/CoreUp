@@ -1,0 +1,343 @@
+/**
+ * ContactInfoEdit.module.scss
+ *
+ * Styles for the ContactInfoEdit component using CSS Modules.
+ * Defines layout, form, image uploads, and button styles with responsive adjustments.
+ * Integrates with global variables and mixins for consistency.
+ *
+ * Author: Mahmoud Ramadan
+ * Created: June 2025
+ */
+
+@use "sass:color";
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/****************************
+ * Contact Info Edit Container
+ * Main wrapper for the contact info edit form, centered with responsive padding.
+ ****************************/
+.contactInfoEdit {
+  // Box Model: Constrain width and add padding
+  max-width: 800px;
+  padding: vars.$spacing-large calc(vars.$spacing-large * 3);
+  border-radius: vars.$border-radius-small;
+
+  // Visual: Apply background color
+  background-color: vars.$color-content-bg;
+
+  // Responsive: Reduce padding on tablet screens
+  @include mixins.respond-to(tablet) {
+    padding: vars.$spacing-large calc(vars.$spacing-large * 1);
+  }
+
+  // Responsive: Full-width with smaller padding on mobile
+  @include mixins.respond-to(mobile) {
+    margin: 0 auto;
+    padding: vars.$spacing-medium;
+    max-width: 100%;
+  }
+
+  /****************************
+   * Form
+   * Styles for the contact info edit form with consistent spacing.
+   ****************************/
+  &__form {
+    // Box Model: Full-width form
+    width: 100%;
+  }
+
+  /****************************
+   * Fieldset
+   * Groups form inputs and uploads with consistent spacing and no border.
+   ****************************/
+  &__fieldset {
+    // Layout: Vertical stack with spacing
+    @include mixins.flex(column, flex-start, stretch, 1.6rem);
+
+    // Box Model: Remove default border and spacing
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /****************************
+   * Visually Hidden Elements
+   * Hides elements visually while keeping them accessible to screen readers.
+   ****************************/
+  &__visuallyHidden {
+    // Accessibility: Hide visually but keep accessible
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  /****************************
+   * Error Message
+   * Feedback message displayed for general form errors.
+   ****************************/
+  &__error {
+    // Typography: Standard font size
+    @include mixins.typography(vars.$font-size-base);
+    color: vars.$color-error;
+
+    // Box Model: Spacing and rounded corners
+    margin-bottom: vars.$spacing-medium;
+    padding: vars.$padding-small;
+    border-radius: vars.$border-radius-small;
+
+    // Visual: Subtle background for emphasis
+    background-color: rgba(vars.$color-error, 0.1);
+  }
+
+  /****************************
+   * Label
+   * Styles for form input and upload labels.
+   ****************************/
+  &__label {
+    // Typography: Bold for emphasis
+    @include mixins.typography(vars.$font-size-base, vars.$font-weight-bold);
+    color: vars.$color-text-light;
+
+    // Box Model: Spacing
+    display: block;
+    margin-bottom: vars.$spacing-small;
+  }
+
+  /****************************
+   * Upload Section
+   * Container for image upload fields.
+   ****************************/
+  &__upload {
+    // Box Model: Spacing
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  /****************************
+   * Upload Wrapper
+   * Layout for profile image upload and preview.
+   ****************************/
+  &__uploadWrapper {
+    // Layout: Horizontal stack with spacing
+    @include mixins.flex(row, flex-start, center, vars.$spacing-medium);
+
+    // Responsive: Stack vertically on mobile
+    @include mixins.respond-to(mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  /****************************
+   * Profile Preview
+   * Container for profile image preview.
+   ****************************/
+  &__profilePreview {
+    // Layout: Center content
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Box Model: Fixed size with rounded corners
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px dashed vars.$color-border-input;
+
+    // Visual: Background and overflow
+    background-color: vars.$color-background-gray;
+    overflow: hidden;
+
+    // Responsive: Smaller size on mobile
+    @include mixins.respond-to(mobile) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  /****************************
+   * Profile Image
+   * Styles for uploaded profile image.
+   ****************************/
+  &__profileImage {
+    // Box Model: Fill container
+    width: 100%;
+    height: 100%;
+
+    // Visual: Cover fit
+    object-fit: cover;
+  }
+
+  /****************************
+   * Profile Icon
+   * Default icon when no profile image is uploaded.
+   ****************************/
+  &__profileIcon {
+    // Box Model: Constrain size
+    width: 65px;
+    height: 65px;
+    padding-top: 1rem;
+
+    // Visual: Background and color
+    color: vars.$color-text-light;
+    background-color: vars.$color-background-gray;
+    border-radius: 50%;
+
+    // Responsive: Smaller size on mobile
+    @include mixins.respond-to(mobile) {
+      width: 40px;
+      height: 40px;
+      padding-top: 0.5rem;
+    }
+  }
+
+  /****************************
+   * Upload Actions
+   * Container for upload input and button.
+   ****************************/
+  &__uploadActions {
+    // Layout: Vertical stack with spacing
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-small;
+  }
+
+  /****************************
+   * Upload Area
+   * Container for cover image upload.
+   ****************************/
+  &__uploadArea {
+    // Layout: Vertical stack with spacing
+    @include mixins.flex(column, center, center, 5px);
+
+    // Box Model: Padding and border
+    padding: vars.$spacing-large;
+    border: 2px dashed vars.$color-border-input;
+    border-radius: vars.$border-radius-small;
+    margin-top: vars.$spacing-small;
+
+    // Visual: Background and text alignment
+    background-color: vars.$color-background-gray;
+    text-align: center;
+
+    // Responsive: Smaller padding on mobile
+    @include mixins.respond-to(mobile) {
+      padding: vars.$spacing-medium;
+    }
+  }
+
+  /****************************
+   * Upload Placeholder
+   * Placeholder text for upload fields.
+   ****************************/
+  &__uploadPlaceholder {
+    // Typography: Standard font size
+    @include mixins.typography(vars.$font-size-body);
+    color: vars.$color-text-light;
+
+    // Layout: Block display
+    display: block;
+  }
+
+  /****************************
+   * Upload Input
+   * Hidden file input for uploads.
+   ****************************/
+  &__uploadInput {
+    // Layout: Hide visually
+    display: none;
+  }
+
+  /****************************
+   * Upload Button
+   * Button for triggering file uploads.
+   ****************************/
+  &__uploadButton {
+    // Layout: Centered content
+    display: inline-flex;
+    justify-content: center;
+
+    // Box Model: Constrain width and padding
+    width: fit-content;
+    padding: vars.$padding-base;
+    margin-top: vars.$spacing-xsmall;
+    border: none;
+    border-radius: vars.$border-radius-small;
+
+    // Typography: Bold for emphasis
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-bold);
+    color: vars.$color-text-light;
+
+    // Visual: Adjusted background
+    background-color: color.adjust(
+      vars.$color-background-gray,
+      $lightness: -15%
+    );
+    cursor: pointer;
+
+    // Transitions: Smooth background change
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust(
+        vars.$color-background-gray,
+        $lightness: -10%
+      );
+    }
+  }
+
+  /****************************
+   * Submit Button
+   * Styles for the form submission button with hover and disabled states.
+   ****************************/
+  &__submitButton {
+    // Layout: Centered content
+    @include mixins.flex(row, center, center);
+
+    // Box Model: Constrain width and add padding
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 200px;
+    padding: vars.$padding-base;
+    border: none;
+    border-radius: vars.$border-radius-small;
+
+    // Typography: Medium weight for readability
+    @include mixins.typography(vars.$font-size-base, vars.$font-weight-medium);
+    color: vars.$white;
+
+    // Visual: Primary button background
+    background-color: vars.$blue;
+    cursor: pointer;
+
+    // Transitions: Smooth opacity change
+    transition: opacity 0.3s ease;
+
+    &:hover:not(:disabled) {
+      opacity: 0.8;
+    }
+
+    &:disabled {
+      background-color: vars.$color-text-gray;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    &:focus {
+      outline: vars.$focus-outline-width vars.$focus-outline-style
+        vars.$focus-outline-color;
+      outline-offset: vars.$focus-outline-offset;
+    }
+
+    // Responsive: Smaller button on mobile
+    @include mixins.respond-to(mobile) {
+      max-width: 150px;
+      padding: vars.$padding-small;
+    }
+  }
+}

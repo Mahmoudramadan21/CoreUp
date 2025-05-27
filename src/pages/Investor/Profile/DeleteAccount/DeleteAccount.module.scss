@@ -1,0 +1,226 @@
+/**
+ * DeleteAccount.module.scss
+ *
+ * Styles for the DeleteAccount component using CSS Modules.
+ * Defines layout, form, message, and button styles with responsive adjustments.
+ * Integrates with global variables and mixins for consistency.
+ *
+ * Author: Mahmoud Ramadan
+ * Created: June 2025
+ */
+
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/****************************
+ * Delete Account Container
+ * Main wrapper for the delete account form, centered with responsive padding.
+ ****************************/
+.deleteAccount {
+  // Box Model: Constrain width and add padding
+  max-width: 800px;
+  padding: vars.$spacing-large calc(vars.$spacing-large * 3);
+  border-radius: vars.$border-radius-small;
+
+  // Visual: Apply background color
+  background-color: vars.$color-content-bg;
+
+  // Responsive: Reduce padding on tablet screens
+  @include mixins.respond-to(tablet) {
+    padding: vars.$spacing-large calc(vars.$spacing-large * 1);
+  }
+
+  // Responsive: Full-width with smaller padding on mobile
+  @include mixins.respond-to(mobile) {
+    margin: 0 auto;
+    padding: vars.$spacing-medium;
+    max-width: 100%;
+  }
+
+  /****************************
+   * Form
+   * Styles for the delete account form with consistent spacing.
+   ****************************/
+  &__form {
+    // Box Model: Full-width form with smaller max-width
+    width: 100%;
+    max-width: 400px;
+  }
+
+  /****************************
+   * Fieldset
+   * Groups form elements with consistent spacing and no border.
+   ****************************/
+  &__fieldset {
+    // Layout: Vertical stack with spacing
+    @include mixins.flex(column, flex-start, stretch, 1.6rem);
+
+    // Box Model: Remove default border and spacing
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /****************************
+   * Visually Hidden Elements
+   * Hides elements visually while keeping them accessible to screen readers.
+   ****************************/
+  &__visuallyHidden {
+    // Accessibility: Hide visually but keep accessible
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  /****************************
+   * Description
+   * Introductory text for the delete action.
+   ****************************/
+  &__description {
+    // Typography: Standard font size
+    @include mixins.typography(vars.$font-size-base);
+    color: vars.$color-text-gray;
+
+    // Box Model: Spacing
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  /****************************
+   * Checkbox Container
+   * Layout for checkbox and label.
+   ****************************/
+  &__checkboxContainer {
+    // Layout: Horizontal stack with spacing
+    @include mixins.flex(row, flex-start, center, vars.$spacing-xsmall);
+
+    // Box Model: Full width
+    width: 100%;
+  }
+
+  /****************************
+   * Checkbox
+   * Styles for the confirmation checkbox.
+   ****************************/
+  &__checkbox {
+    // Box Model: Fixed size
+    margin: 0;
+    width: 1rem;
+    height: 1rem;
+
+    // Visual: Cursor and focus
+    cursor: pointer;
+
+    &:focus {
+      outline: vars.$focus-outline-width vars.$focus-outline-style
+        vars.$focus-outline-color;
+      outline-offset: vars.$focus-outline-offset;
+    }
+  }
+
+  /****************************
+   * Checkbox Label
+   * Label for the confirmation checkbox.
+   ****************************/
+  &__checkboxLabel {
+    // Typography: Standard font size
+    @include mixins.typography(vars.$font-size-base);
+    color: vars.$color-text-dark;
+
+    // Visual: Cursor
+    cursor: pointer;
+  }
+
+  /****************************
+   * Checkbox Description
+   * Additional information for the checkbox.
+   ****************************/
+  &__checkboxDescription {
+    // Typography: Smaller font size
+    @include mixins.typography(vars.$font-size-small);
+    color: vars.$color-text-gray-muted;
+
+    // Box Model: Spacing
+    margin: vars.$spacing-xsmall 0 vars.$spacing-medium;
+  }
+
+  /****************************
+   * Message
+   * Feedback message for success or error states.
+   ****************************/
+  &__message {
+    // Typography: Standard font size
+    @include mixins.typography(vars.$font-size-base);
+
+    // Box Model: Spacing and rounded corners
+    margin-bottom: vars.$spacing-medium;
+    padding: vars.$padding-small;
+    border-radius: vars.$border-radius-small;
+
+    // Success state
+    &--success {
+      color: vars.$color-progress-fill;
+      background-color: rgba(vars.$color-progress-fill, 0.1);
+    }
+
+    // Error state
+    &--error {
+      color: vars.$color-error;
+      background-color: rgba(vars.$color-error, 0.1);
+    }
+  }
+
+  /****************************
+   * Submit Button
+   * Styles for the form submission button with hover and disabled states.
+   ****************************/
+  &__submitButton {
+    // Layout: Centered content
+    @include mixins.flex(row, center, center);
+
+    // Box Model: Constrain width and add padding
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 200px;
+    padding: vars.$padding-base;
+    border: none;
+    border-radius: vars.$border-radius-small;
+
+    // Typography: Medium weight for readability
+    @include mixins.typography(vars.$font-size-base, vars.$font-weight-medium);
+    color: vars.$white;
+
+    // Visual: Primary button background
+    background-color: vars.$blue;
+    cursor: pointer;
+
+    // Transitions: Smooth opacity change
+    transition: opacity 0.3s ease;
+
+    &:hover:not(:disabled) {
+      opacity: 0.8;
+    }
+
+    &:disabled {
+      background-color: vars.$color-text-gray;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    &:focus {
+      outline: vars.$focus-outline-width vars.$focus-outline-style
+        vars.$focus-outline-color;
+      outline-offset: vars.$focus-outline-offset;
+    }
+
+    // Responsive: Smaller button on mobile
+    @include mixins.respond-to(mobile) {
+      max-width: 150px;
+      padding: vars.$padding-small;
+    }
+  }
+}

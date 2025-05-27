@@ -1,0 +1,323 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * InvestmentCard component styles
+ * Defines styling for the investment card used in Portfolio page
+ * Uses BEM methodology, global variables, and mixins
+ * Accessibility Note: Ensures visible focus states and sufficient contrast
+ */
+
+.investmentCard {
+  // Layout
+  @include mixins.flex(column, stretch, stretch);
+
+  // Box Model
+  background-color: vars.$color-background-white;
+  border-radius: vars.$border-radius-small;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: vars.$card-max-width;
+  margin: 0 auto;
+
+  &__badge {
+    // Layout
+    position: absolute;
+    top: vars.$spacing-small;
+    left: vars.$spacing-small;
+
+    // Box Model
+    padding: vars.$padding-xsmall;
+    border-radius: vars.$border-radius-small;
+
+    // Typography
+    @include mixins.typography(vars.$font-size-small, vars.$font-weight-bold);
+    text-transform: uppercase;
+
+    // Visual
+    background-color: vars.$color-primary;
+    color: vars.$white;
+  }
+
+  &__imageSection {
+    // Layout
+    position: relative;
+  }
+
+  &__coverImageWrapper {
+    // Box Model
+    width: 100%;
+    height: vars.$cover-image-height;
+    overflow: hidden;
+  }
+
+  &__coverImage {
+    // Box Model
+    width: 100%;
+    height: 100%;
+
+    // Visual
+    object-fit: cover;
+  }
+
+  &__logoWrapper {
+    // Layout
+    position: absolute;
+    bottom: vars.$logo-offset;
+    left: vars.$spacing-medium;
+    @include mixins.flex(row, center, center);
+
+    // Box Model
+    width: vars.$logo-wrapper-size;
+    height: vars.$logo-wrapper-size;
+    border-radius: 50%;
+    background-color: vars.$color-background-white;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  }
+
+  &__logo {
+    // Box Model
+    width: vars.$logo-size;
+    height: vars.$logo-size;
+    border-radius: 50%;
+
+    // Visual
+    object-fit: contain;
+  }
+
+  &__content {
+    // Box Model
+    padding: vars.$spacing-medium;
+    padding-top: vars.$content-padding-top;
+  }
+
+  &__header {
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+  }
+
+  &__title {
+    // Typography
+    @include mixins.typography(vars.$font-size-large, vars.$font-weight-bold);
+    color: vars.$color-text-dark;
+    margin: 0;
+  }
+
+  &__location {
+    // Layout
+    @include mixins.flex(row, flex-start, center, vars.$spacing-xsmall);
+
+    // Typography
+    @include mixins.typography(vars.$font-size-body);
+    color: vars.$color-text-gray;
+    margin-top: vars.$spacing-xsmall;
+  }
+
+  &__locationIcon {
+    // Box Model
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &__industryStage {
+    // Layout
+    @include mixins.flex(row, flex-start, center, vars.$spacing-small);
+
+    // Typography
+    @include mixins.typography(vars.$font-size-body);
+    color: vars.$color-text-gray;
+    margin-top: vars.$spacing-xsmall;
+  }
+
+  &__industry,
+  &__fundingStage {
+    // Typography
+    font-style: italic;
+  }
+
+  &__meta {
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+
+    // Typography
+    @include mixins.typography(vars.$font-size-body);
+    color: vars.$color-text-gray;
+  }
+
+  &__founders,
+  &__companyInfo,
+  &__requestDate {
+    // Box Model
+    margin: 0;
+    margin-top: vars.$spacing-xsmall;
+  }
+
+  &__description {
+    // Typography
+    @include mixins.typography(vars.$font-size-body);
+    color: vars.$color-text-dark;
+    line-height: 1.5;
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  &__financials {
+    // Layout
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(6.25rem, 1fr));
+    gap: vars.$spacing-small;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+    padding: vars.$spacing-small;
+    background-color: vars.$color-content-bg;
+    border-radius: vars.$border-radius-small;
+  }
+
+  &__financialItem {
+    // Layout
+    text-align: center;
+  }
+
+  &__financialValue {
+    // Typography
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-bold);
+    color: vars.$color-primary;
+    display: block;
+  }
+
+  &__financialLabel {
+    // Typography
+    @include mixins.typography(vars.$font-size-small);
+    color: vars.$color-text-gray;
+  }
+
+  &__section {
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  &__sectionTitle {
+    // Typography
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-bold);
+    color: vars.$color-text-dark;
+    margin-bottom: vars.$spacing-xsmall;
+  }
+
+  &__highlights,
+  &__traction {
+    // Box Model
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__highlight,
+  &__tractionItem {
+    // Typography
+    @include mixins.typography(vars.$font-size-body);
+    color: vars.$color-text-dark;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: vars.$spacing-xsmall;
+  }
+
+  &__highlight {
+    // Visual
+    &:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: vars.$color-primary;
+      font-size: 1.2rem;
+    }
+  }
+
+  &__tractionItem {
+    // Visual
+    &:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: vars.$color-progress-fill;
+      font-size: 1rem;
+    }
+  }
+
+  &__actions {
+    // Layout
+    @include mixins.flex(row, stretch, stretch, vars.$spacing-small);
+  }
+
+  &__button {
+    // Layout
+    flex: 1;
+    @include mixins.flex(row, center, center);
+
+    // Box Model
+    padding: vars.$padding-small;
+    border: none;
+    border-radius: vars.$border-radius-small;
+
+    // Typography
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-medium);
+    color: vars.$white;
+
+    // Visual
+    background-color: vars.$color-primary;
+    cursor: pointer;
+
+    // Transitions
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: vars.$color-primary-hover;
+    }
+
+    &:disabled {
+      background-color: vars.$color-background-gray;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      outline: vars.$focus-outline-width vars.$focus-outline-style
+        vars.$color-primary;
+      outline-offset: vars.$focus-outline-offset;
+    }
+  }
+
+  &__deleteButton {
+    // Box Model
+    padding: vars.$padding-small;
+    border: none;
+    border-radius: vars.$border-radius-small;
+
+    // Visual
+    background-color: vars.$color-background-light;
+    cursor: pointer;
+
+    // Transitions
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: vars.$color-background-gray;
+    }
+
+    &:disabled {
+      background-color: vars.$color-background-gray;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      outline: vars.$focus-outline-width vars.$focus-outline-style
+        vars.$color-primary;
+      outline-offset: vars.$focus-outline-offset;
+    }
+  }
+
+  &__deleteIcon {
+    // Box Model
+    width: 1rem;
+    height: 1rem;
+  }
+}

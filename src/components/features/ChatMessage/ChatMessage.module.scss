@@ -1,0 +1,150 @@
+/**
+ * Styles for the Chat Message component
+ * Defines layout, responsive design, and visual styling for dynamic messages
+ * Uses global variables from _variables.scss and mixins from _mixins.scss
+ * Optimized for performance, accessibility, and responsiveness
+ */
+
+@use "sass:color";
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/**
+ * Root container for a chat message
+ * Arranges message content and avatar in a row with avatar on the right
+ */
+.chatMessage {
+  @include mixins.flex($direction: row, $gap: vars.$spacing-small);
+  margin-bottom: vars.$spacing-medium;
+  width: 100%;
+  transition: opacity 0.2s ease;
+}
+
+/**
+ * Message content wrapper
+ * Contains the bubble and timestamp, clickable to toggle timestamp
+ */
+.messageContent {
+  @include mixins.flex($direction: column, $gap: vars.$spacing-xsmall);
+  flex: 1;
+  cursor: pointer;
+
+  //   &:focus {
+  //     outline: vars.$focus-outline-width vars.$focus-outline-style
+  //       vars.$focus-outline-color;
+  //     outline-offset: vars.$focus-outline-offset;
+  //   }
+}
+
+/**
+ * Sent message styles
+ * Aligns bubble to the right with primary color styling
+ */
+.chatMessageSent {
+  justify-content: flex-end;
+
+  & .chatMessageBubble {
+    background-color: vars.$color-primary;
+    color: vars.$white;
+    padding: vars.$padding-small;
+    border-radius: vars.$border-radius-large;
+    box-shadow: vars.$shadow-small;
+  }
+
+  & .messageContent {
+    align-items: flex-end;
+  }
+}
+
+/**
+ * Received message styles
+ * Aligns bubble to the left with light background styling
+ */
+.chatMessageReceived {
+  flex-direction: row-reverse;
+
+  & .chatMessageBubble {
+    background-color: vars.$color-background-light;
+    color: vars.$color-text-dark;
+    padding: vars.$padding-small;
+    border-radius: vars.$border-radius-large;
+    box-shadow: vars.$shadow-small;
+  }
+
+  & .messageContent {
+    align-items: flex-start;
+  }
+}
+
+/**
+ * Same sender styles
+ * Adjusts spacing for consecutive messages from the same sender
+ */
+.sameSender {
+  margin-top: calc(
+    vars.$spacing-small * -1
+  ); /* Reduce spacing between consecutive messages */
+}
+
+/**
+ * Avatar wrapper
+ * Reserves space for the avatar even when hidden
+ */
+.avatarWrapper {
+  width: vars.$avatar-size;
+  height: vars.$avatar-size;
+  flex-shrink: 0;
+}
+
+/**
+ * Avatar image styles
+ * Displays user profile picture on the right with lazy loading for performance
+ */
+.chatMessageAvatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/**
+ * Message bubble styles
+ * Contains the message text with responsive width
+ */
+.chatMessageBubble {
+  max-width: 320px;
+  word-wrap: break-word;
+  padding: vars.$padding-small;
+  @include mixins.border-radius($radius: vars.$border-radius-large);
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile") {
+    max-width: 80%;
+  }
+
+  @include mixins.respond-to("xsmall") {
+    max-width: 90%;
+  }
+}
+
+/**
+ * Timestamp styles
+ * Displays the relative time of the message on double-click
+ */
+.chatMessageTimestamp {
+  @include mixins.typography(
+    $size: vars.$font-size-xsmall,
+    $weight: vars.$font-weight-regular
+  );
+  color: vars.$color-text-gray;
+}

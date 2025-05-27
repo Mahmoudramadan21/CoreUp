@@ -1,0 +1,27 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * NotificationList component styles
+ * Defines styling for the list of notifications
+ * Uses BEM methodology, global variables, and mixins
+ */
+
+.notificationList {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-medium);
+
+  // Box Model
+  width: 100%;
+}
+
+.error,
+.empty {
+  // Typography
+  @include mixins.typography(vars.$font-size-body, vars.$font-weight-regular);
+  color: vars.$color-text-gray;
+
+  // Box Model
+  text-align: center;
+  padding: vars.$spacing-medium;
+}

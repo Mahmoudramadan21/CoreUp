@@ -1,0 +1,102 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * Notifications page styles
+ * Defines styling for the notifications section
+ * Uses BEM methodology, global variables, and mixins
+ * Accessibility Note: Ensures high contrast and readable layouts
+ */
+
+.notifications {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-medium);
+
+  // Box Model
+  padding: vars.$spacing-medium vars.$spacing-medium vars.$spacing-xlarge;
+  width: 100%;
+  max-width: 62.5rem; // 1000px
+  margin: 0 auto;
+
+  &__header {
+    // Layout
+    @include mixins.flex(row, space-between, center, vars.$spacing-small);
+
+    // Box Model
+    width: 100%;
+    margin-bottom: vars.$spacing-medium;
+
+    // Responsive
+    @include mixins.respond-to("mobile") {
+      flex-direction: column;
+      gap: vars.$spacing-small;
+      align-items: flex-start;
+    }
+  }
+
+  &__actions {
+    // Layout
+    @include mixins.flex(row, flex-end, center, vars.$spacing-small);
+  }
+
+  &__content {
+    // Layout
+    width: 100%;
+  }
+
+  &__title {
+    // Typography
+    @include mixins.typography(vars.$font-size-heading, vars.$font-weight-bold);
+    color: vars.$color-text-dark;
+
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+  }
+
+  &__note {
+    // Box Model
+    background-color: vars.$color-background-light;
+    padding: vars.$padding-notification;
+    border-radius: vars.$border-radius-small;
+    margin-bottom: vars.$spacing-medium;
+
+    // Typography
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-regular);
+    color: vars.$color-text-gray;
+
+    // Responsive
+    @include mixins.respond-to("mobile") {
+      padding: vars.$padding-small;
+      font-size: vars.$font-size-small;
+    }
+  }
+
+  &__list {
+    // Layout
+    @include mixins.flex(column, flex-start, stretch, vars.$spacing-medium);
+
+    // Box Model
+    width: 100%;
+  }
+
+  &__loading,
+  &__error,
+  &__empty {
+    // Typography
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-regular);
+    color: vars.$color-text-gray;
+
+    // Box Model
+    text-align: center;
+    padding: vars.$spacing-medium;
+  }
+
+  // Responsive
+  @include mixins.respond-to("tablet") {
+    padding: vars.$spacing-small vars.$spacing-medium;
+  }
+
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+  }
+}

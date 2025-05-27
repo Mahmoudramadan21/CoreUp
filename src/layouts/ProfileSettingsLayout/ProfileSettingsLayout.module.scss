@@ -1,0 +1,48 @@
+/**
+ * ProfileSettingsLayout component styles
+ * Defines styling for profile settings pages
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures sufficient contrast
+ */
+
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins";
+
+/* ProfileSettingsLayout block */
+.profileSettingsLayout {
+  /* Layout */
+  @include mixins.flex(column, stretch, stretch);
+  min-height: 100vh;
+
+  /* CSS Variables */
+  --header-height: vars.$header-height;
+  --footer-height: vars.$footer-height;
+}
+
+/* Container element */
+.profileSettingsLayout__container {
+  /* Layout */
+  @include mixins.flex(row, stretch, stretch);
+  flex: 1;
+
+  /* Box Model */
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+/* Main element */
+.profileSettingsLayout__main {
+  /* Layout */
+  flex: 1;
+
+  /* Box Model */
+  padding: vars.$spacing-medium;
+
+  /* Visual */
+  background-color: vars.$color-content-bg;
+  overflow-y: auto;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    padding: vars.$spacing-small;
+  }
+}

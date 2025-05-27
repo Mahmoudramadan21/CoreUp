@@ -1,0 +1,143 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+.statCard {
+  // Layout
+  @include mixins.flex(column, stretch, stretch);
+
+  // Box Model
+  background-color: vars.$color-background-white;
+  border-radius: vars.$border-radius-small;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  padding: vars.$spacing-medium;
+  min-width: vars.$card-min-width;
+
+  // Typography
+  text-align: end;
+
+  // Responsive adjustments
+  @include mixins.respond-to(mobile) {
+    padding: vars.$spacing-small;
+    min-width: 100%;
+  }
+
+  &__header {
+    // Layout
+    @include mixins.flex(row, space-between, center);
+
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+  }
+
+  &__title {
+    // Typography
+    @include mixins.typography(vars.$font-size-small, vars.$font-weight-medium);
+    color: vars.$color-text-gray;
+    margin: 0;
+  }
+
+  &__info {
+    // Typography
+    @include mixins.typography(vars.$font-size-small);
+    color: vars.$color-text-gray-muted;
+    cursor: pointer;
+
+    // Transitions
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: vars.$color-primary;
+    }
+  }
+
+  &__content {
+    // Layout
+    @include mixins.flex(row, center, center);
+
+    // Box Model
+    height: 6.25rem; // 100px
+    position: relative;
+  }
+
+  &__progress {
+    // Layout
+    position: absolute;
+
+    // Box Model
+    width: 6.25rem; // 100px
+    height: 6.25rem; // 100px
+  }
+
+  &__progressCircle {
+    // Layout
+    width: 100%;
+    height: 100%;
+  }
+
+  &__progressBg {
+    // Visual
+    fill: none;
+    stroke: vars.$color-progress-bg;
+    stroke-width: 8;
+  }
+
+  &__progressFill {
+    // Visual
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+
+    // Transitions
+    transition: stroke-dashoffset 0.3s ease;
+  }
+
+  &__value {
+    // Typography
+    @include mixins.typography(vars.$font-size-large, vars.$font-weight-bold);
+    color: vars.$color-text-dark;
+
+    // Layout
+    position: relative;
+    z-index: 1;
+  }
+
+  &__button {
+    // Layout
+    align-self: flex-start;
+    @include mixins.flex(row, center, center);
+
+    // Box Model
+    margin-top: vars.$spacing-small;
+    padding: vars.$padding-small;
+    border: none;
+    border-radius: vars.$border-radius-small;
+
+    // Typography
+    @include mixins.typography(vars.$font-size-small);
+    color: vars.$color-text-dark;
+
+    // Visual
+    background-color: vars.$color-button-bg;
+    cursor: pointer;
+
+    // Transitions
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: vars.$color-button-hover;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    &:focus-visible {
+      outline: vars.$focus-outline-width vars.$focus-outline-style
+        vars.$color-primary;
+      outline-offset: vars.$focus-outline-offset;
+    }
+  }
+}

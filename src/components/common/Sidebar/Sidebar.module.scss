@@ -1,0 +1,155 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * Sidebar component styles
+ * Defines styling for profile settings navigation with text on desktop and icons on mobile
+ * Uses BEM methodology and integrates with global variables
+ * Accessibility Note: Ensures focus states and contrast for navigation links
+ */
+
+// Sidebar container
+.sidebar {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch);
+  position: sticky;
+  top: vars.$header-height;
+
+  // Box Model
+  width: 15.625rem; // 250px
+  height: calc(100vh - vars.$header-height);
+  padding: vars.$spacing-small;
+  padding-top: 2.75rem;
+  border-right: 1px solid vars.$color-border-input;
+
+  // Visual
+  background-color: vars.$color-sidebar-bg;
+
+  // Responsive adjustments
+  @include mixins.respond-to(mobile) {
+    width: fit-content;
+    height: auto;
+    padding: vars.$spacing-small;
+    padding-top: 1.75rem;
+    border-right: none;
+    border-bottom: 1px solid vars.$color-border-input;
+    position: static;
+  }
+}
+
+// Navigation list
+.navList {
+  // Layout
+  @include mixins.flex(column, center, start, vars.$spacing-small);
+  flex-wrap: wrap;
+
+  // Box Model
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  // Responsive adjustments
+  @include mixins.respond-to(mobile) {
+    width: fit-content;
+    justify-content: space-between;
+  }
+}
+
+// Navigation item
+.navItem {
+  // Layout
+  flex: 0 0 auto;
+
+  // Box Model
+  margin-bottom: vars.$spacing-small;
+  width: 100%;
+
+  // Responsive adjustments
+  @include mixins.respond-to(mobile) {
+    margin-bottom: 0;
+    flex: 0 0 16.66%; // 1/6 width for 6 items
+    text-align: center;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Navigation link
+.navLink {
+  // Layout
+  @include mixins.flex(row, flex-start, center, vars.$spacing-xsmall);
+  width: 100%;
+
+  // Box Model
+  padding: vars.$padding-base;
+  border-radius: vars.$border-radius-small;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-base);
+  text-decoration: none;
+
+  // Visual
+  color: vars.$color-text-dark;
+  background-color: transparent;
+
+  // Transitions
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  // Active state
+  &__active {
+    color: vars.$color-nav-active;
+    background-color: rgba(vars.$color-nav-active, 0.1);
+  }
+
+  // Hover and focus states
+  &:hover,
+  &:focus {
+    color: vars.$color-nav-active;
+    background-color: rgba(vars.$color-nav-active, 0.1);
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+
+  // Icon wrapper
+  &__icon {
+    // Layout
+    display: none; // Hidden on desktop
+
+    // Box Model
+    width: vars.$icon-size;
+    height: vars.$icon-size;
+
+    // Responsive adjustments
+    @include mixins.respond-to(mobile) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    svg {
+      width: 60%;
+      height: 60%;
+    }
+  }
+
+  // Text wrapper
+  &__text {
+    // Responsive adjustments
+    @include mixins.respond-to(mobile) {
+      display: none; // Hidden on mobile
+    }
+  }
+
+  // Responsive adjustments
+  @include mixins.respond-to(mobile) {
+    flex-direction: column;
+    align-items: center;
+    padding: vars.$spacing-xsmall;
+  }
+}
