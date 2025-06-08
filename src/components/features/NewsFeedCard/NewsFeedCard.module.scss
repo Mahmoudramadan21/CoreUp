@@ -1,0 +1,159 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * NewsFeedCard component styles
+ * Defines styling for individual post cards in the News Feed
+ * Uses BEM methodology, global variables, and mixins
+ * Accessibility Note: Ensures high contrast and accessible interactions
+ */
+
+.newsFeedCard {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-small);
+
+  // Box Model
+  padding: vars.$spacing-medium;
+  margin: vars.$spacing-small 0;
+  border-radius: vars.$border-radius-small;
+  background-color: vars.$color-background-white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  // Typography
+  color: vars.$color-text-dark;
+
+  // Responsive
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-small;
+  }
+}
+
+.newsFeedCard__userInfo {
+  // Layout
+  @include mixins.flex(row, flex-start, center, vars.$spacing-small);
+}
+
+.newsFeedCard__avatar {
+  // Layout
+  @include mixins.flex(row, center, center);
+
+  // Box Model
+  width: vars.$avatar-size;
+  height: vars.$avatar-size;
+  border-radius: 50%;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-large, vars.$font-weight-bold);
+  color: vars.$white;
+
+  // Visual
+  background-color: vars.$color-avatar-bg;
+}
+
+.newsFeedCard__userDetails {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch);
+}
+
+.newsFeedCard__userName {
+  // Typography
+  @include mixins.typography(vars.$font-size-body, vars.$font-weight-bold);
+
+  // Box Model
+  margin: 0;
+}
+
+.newsFeedCard__postTime {
+  // Typography
+  @include mixins.typography(vars.$font-size-small, vars.$font-weight-regular);
+  color: vars.$color-text-gray;
+}
+
+.newsFeedCard__mainText {
+  // Typography
+  @include mixins.typography(vars.$font-size-body, vars.$font-weight-regular);
+  line-height: 1.5;
+
+  // Box Model
+  margin: 0;
+}
+
+.newsFeedCard__sideContent {
+  // Layout
+  @include mixins.flex(row, flex-start, center, vars.$spacing-small);
+}
+
+.newsFeedCard__imageWrapper {
+  // Layout
+  flex-shrink: 0;
+
+  // Box Model
+  width: vars.$thumbnail-size;
+  height: vars.$thumbnail-size;
+  border: 1px solid vars.$color-border-input;
+  border-radius: vars.$border-radius-small;
+  overflow: hidden;
+}
+
+.newsFeedCard__image {
+  // Layout
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  // Responsive
+  @include mixins.respond-to("mobile") {
+    width: vars.$avatar-size;
+    height: vars.$avatar-size;
+  }
+}
+
+.newsFeedCard__sideText {
+  // Layout
+  flex-grow: 1;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-small, vars.$font-weight-regular);
+  color: vars.$color-text-gray;
+
+  // Box Model
+  margin: 0;
+
+  // Responsive
+  @include mixins.respond-to("mobile") {
+    font-size: vars.$font-size-small;
+  }
+}
+
+.newsFeedCard__moreButton {
+  // Layout
+  align-self: flex-start;
+
+  // Box Model
+  padding: vars.$spacing-xsmall;
+  border: none;
+  border-radius: vars.$border-radius-small;
+
+  // Visual
+  background: none;
+  cursor: pointer;
+
+  // Transitions
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+.newsFeedCard__moreIcon {
+  // Box Model
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+}

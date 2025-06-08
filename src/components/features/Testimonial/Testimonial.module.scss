@@ -1,0 +1,121 @@
+/**
+ * Testimonial component styles
+ * Defines styling for testimonial components
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures sufficient contrast
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/* Testimonial block */
+.testimonial {
+  /* Layout */
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-medium);
+
+  /* Box Model */
+  padding: vars.$spacing-medium;
+  border-radius: 0.75rem; /* 12px */
+  width: 100%;
+
+  /* Visual */
+  background-color: vars.$color-background-white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* Modifier: featured */
+  &--featured {
+    /* Layout */
+    margin-top: -5px;
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    /* Layout */
+    align-items: center;
+
+    /* Box Model */
+    padding: vars.$spacing-small;
+    text-align: center;
+  }
+}
+
+/* Stars element */
+.testimonial__stars {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, 0.25rem);
+}
+
+/* Star element */
+.testimonial__star {
+  /* Box Model */
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+}
+
+/* Text element */
+.testimonial__text {
+  /* Box Model */
+  margin: vars.$spacing-medium 0;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-base;
+  line-height: 1.5;
+  color: vars.$color-text-gray;
+}
+
+/* Footer element */
+.testimonial__footer {
+  /* Layout */
+  @include mixins.flex(row, space-between, center, vars.$spacing-small);
+}
+
+/* User element */
+.testimonial__user {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, 0.75rem);
+}
+
+/* Avatar element */
+.testimonial__avatar {
+  /* Box Model */
+  width: vars.$avatar-size;
+  height: vars.$avatar-size;
+  border-radius: 50%;
+}
+
+/* User info element */
+.testimonial__userInfo {
+  /* Layout */
+  @include mixins.flex(column, flex-start, flex-start, 0.25rem);
+}
+
+/* Name element */
+.testimonial__name {
+  /* Box Model */
+  margin: 0;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-subtitle;
+  font-weight: vars.$font-weight-medium;
+  color: vars.$color-text-dark;
+}
+
+/* Role element */
+.testimonial__role {
+  /* Box Model */
+  margin: 0;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-body;
+  color: vars.$color-text-gray;
+}
+
+/* Quote element */
+.testimonial__quote {
+  /* Box Model */
+  width: 1.875rem; /* 30px */
+  height: 1.875rem; /* 30px */
+}

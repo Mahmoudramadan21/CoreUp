@@ -1,0 +1,149 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * NotificationItem component styles
+ * Defines styling for individual notification items
+ * Uses BEM methodology, global variables, and mixins
+ * Accessibility Note: Ensures high contrast, focus states, and readable typography
+ */
+
+/* NotificationItem block */
+.notificationItem {
+  // Layout
+  @include mixins.flex(row, flex-start, flex-start, vars.$spacing-small);
+
+  // Box Model
+  width: 100%;
+  padding: vars.$padding-notification;
+  border-radius: vars.$border-radius-small;
+
+  // Visual
+  background-color: vars.$color-background-white;
+  box-shadow: vars.$shadow-small;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: vars.$shadow-medium;
+  }
+
+  &:focus {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+
+  /* Modifier: unread */
+  &--unread {
+    border-left: 4px solid vars.$color-primary;
+    background-color: vars.$color-background-light;
+  }
+
+  // Responsive
+  @include mixins.respond-to("tablet") {
+    padding: vars.$padding-small;
+  }
+
+  @include mixins.respond-to("mobile") {
+    padding: vars.$padding-xsmall;
+  }
+}
+
+/* Header element */
+.notificationItem__header {
+  // Layout
+  @include mixins.flex(row, space-between, center, vars.$spacing-small);
+
+  // Box Model
+  width: 100%;
+}
+
+/* Unread badge element */
+.notificationItem__unreadBadge {
+  // Layout
+  display: inline-block;
+
+  // Box Model
+  width: 0.5rem; // 8px
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-left: vars.$spacing-xsmall;
+
+  // Visual
+  background-color: vars.$color-unread-badge;
+}
+
+/* Icon element */
+.notificationItem__icon {
+  // Box Model
+  width: vars.$icon-size-small;
+  height: vars.$icon-size-small;
+  margin-right: vars.$spacing-small;
+
+  // Visual
+  // color: vars.$color-icon-gray; // Removed, not applicable to <img>
+}
+
+/* Content element */
+.notificationItem__content {
+  // Layout
+  @include mixins.flex(column, flex-start, flex-start, vars.$spacing-xsmall);
+
+  // Box Model
+  flex: 1;
+}
+
+/* Title element */
+.notificationItem__title {
+  // Box Model
+  margin: 0;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-body, vars.$font-weight-medium);
+  color: vars.$color-text-dark;
+
+  // Responsive
+  @include mixins.respond-to("tablet") {
+    font-size: vars.$font-size-small;
+  }
+
+  @include mixins.respond-to("mobile") {
+    font-size: vars.$font-size-small;
+  }
+}
+
+/* Message element */
+.notificationItem__message {
+  // Box Model
+  margin: 0;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-small, vars.$font-weight-regular);
+  color: vars.$color-text-gray;
+
+  // Responsive
+  @include mixins.respond-to("tablet") {
+    font-size: vars.$font-size-xsmall;
+  }
+
+  @include mixins.respond-to("mobile") {
+    font-size: vars.$font-size-xsmall;
+  }
+}
+
+/* Timestamp element */
+.notificationItem__timestamp {
+  // Typography
+  @include mixins.typography(vars.$font-size-xsmall, vars.$font-weight-regular);
+  color: vars.$color-text-gray;
+
+  // Responsive
+  @include mixins.respond-to("tablet") {
+    font-size: vars.$font-size-xxsmall;
+  }
+
+  @include mixins.respond-to("mobile") {
+    font-size: vars.$font-size-xxsmall;
+  }
+}

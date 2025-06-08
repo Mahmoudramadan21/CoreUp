@@ -1,0 +1,160 @@
+/**
+ * SectorSelectCheckbox component styles
+ * Defines styling for sector select checkboxes
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures visible focus states and sufficient contrast
+ */
+
+@use "../../../styles/variables.scss" as vars;
+@use "../../../styles/mixins";
+
+/* SectorSelectCheckbox block */
+.sectorSelectCheckbox {
+  /* Box Model */
+  border: none;
+  width: 100%;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+}
+
+/* List element */
+.sectorSelectCheckbox__list {
+  /* Layout */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  /* Box Model */
+  gap: vars.$spacing-small;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    /* Layout */
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Item element */
+.sectorSelectCheckbox__item {
+  /* Box Model */
+  margin: 0;
+}
+
+/* Wrapper element */
+.sectorSelectCheckbox__wrapper {
+  /* Box Model */
+  padding: 0.7rem;
+  border: 1px solid vars.$color-border-input;
+  border-radius: 0.5rem; /* 8px */
+  height: 100%;
+  text-align: left;
+
+  /* Visual */
+  background-color: vars.$color-background-white;
+
+  /* Transitions */
+  transition: border-color 0.3s ease;
+
+  &:hover:not(.sectorSelectCheckbox__wrapper--disabled) {
+    border-color: vars.$color-primary-hover;
+  }
+
+  /* Modifier: checked */
+  &--checked {
+    /* Box Model */
+    border: 2px solid vars.$color-primary;
+  }
+
+  /* Modifier: disabled */
+  &--disabled {
+    /* Visual */
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* Label element */
+.sectorSelectCheckbox__label {
+  /* Layout */
+  @include mixins.flex(row, space-between, center);
+
+  /* Box Model */
+  width: 100%;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-body;
+  color: vars.$color-text-light;
+
+  /* Visual */
+  cursor: pointer;
+}
+
+/* Input element */
+.sectorSelectCheckbox__input {
+  /* Box Model */
+  min-width: 1.5rem; /* 24px */
+  min-height: 1.5rem; /* 24px */
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+
+  /* Visual */
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+
+  /* Transitions */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  &:focus {
+    // outline: vars.$focus-outline-width vars.$focus-outline-style
+    //   vars.$focus-outline-color;
+    // outline-offset: vars.$focus-outline-offset;
+  }
+
+  &:checked {
+    /* Visual */
+
+    &:after {
+      /* Content */
+      content: "✓";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      @include mixins.flex(row, center, center);
+      background-color: #2280ef;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      /* Typography */
+      color: vars.$white;
+      font-size: 16px;
+    }
+  }
+
+  &:disabled {
+    /* Visual */
+    cursor: not-allowed;
+  }
+}
+
+/* Visually hidden utility */
+.visuallyHidden {
+  /* Layout */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

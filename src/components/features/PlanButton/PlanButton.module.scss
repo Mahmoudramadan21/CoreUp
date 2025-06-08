@@ -1,0 +1,90 @@
+/**
+ * PlanButton component styles
+ * Defines styling for pricing plan buttons with default and primary variants
+ * Uses BEM methodology and integrates with global variables/mixins
+ * Accessibility Note: Ensures focus states are visible
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/* PlanButton block */
+.planButton {
+  /* Layout */
+  @include mixins.button-base;
+
+  /* Box Model */
+  width: 100%;
+  height: 3rem; /* 48px */
+  padding: 0 1.875rem; /* 30px */
+  border-radius: vars.$border-radius-small;
+
+  /* Typography */
+  font-weight: vars.$font-weight-medium;
+
+  /* Visual */
+  background-color: #e6f0fa; /* Light blue for default */
+  color: vars.$color-primary;
+
+  /* Transitions */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #d1e3f8;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+
+  /* Modifier: Default variant */
+  &--default {
+    /* Visual */
+    background-color: #e6f0fa;
+    color: vars.$color-primary;
+
+    .planButton__arrow {
+      color: vars.$color-primary;
+    }
+
+    &:hover {
+      background-color: #d1e3f8;
+    }
+  }
+
+  /* Modifier: Primary variant */
+  &--primary {
+    /* Visual */
+    background-color: vars.$color-primary;
+    color: vars.$color-background-white;
+
+    .planButton__arrow {
+      color: vars.$color-background-white;
+    }
+
+    &:hover {
+      background-color: vars.$color-primary-hover;
+    }
+  }
+
+  /* Arrow icon */
+  &__arrow {
+    /* Box Model */
+    margin-left: vars.$spacing-small;
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    /* Box Model */
+    padding: vars.$padding-small;
+    height: 2.5rem; /* 40px */
+
+    /* Typography */
+    font-size: vars.$font-size-small;
+  }
+}

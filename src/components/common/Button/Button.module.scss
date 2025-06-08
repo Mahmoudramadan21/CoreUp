@@ -1,0 +1,83 @@
+/**
+ * Button.module.scss
+ *
+ * Styles for the Button component using CSS Modules.
+ * Defines reusable button styles with size and state variants using BEM methodology.
+ * Integrates with global variables and mixins for consistency.
+ *
+ * Author: Mahmoud Ramadan
+ * Created: June 2025
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins" as mixins;
+
+/* Mixin for hover and focus states */
+@mixin hover-focus($bg-color) {
+  background-color: $bg-color;
+  transform: translateY(-2px);
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Button block */
+.button {
+  @include mixins.button-base;
+  height: vars.$button-height; /* 42px */
+  width: 100%;
+  background-color: vars.$blue;
+
+  /* States */
+  &:hover,
+  &:focus-visible {
+    @include hover-focus(vars.$blue-dark);
+  }
+
+  /* Modifier: Medium size */
+  &--md {
+    padding: 0 vars.$spacing-large; /* 40px */
+  }
+
+  /* Modifier: Large size */
+  &--lg {
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Modifier: Primary variant */
+  &--primary {
+    padding: 0 vars.$spacing-medium; /* 20px */
+    background-color: vars.$color-primary;
+
+    &:hover,
+    &:focus-visible {
+      @include hover-focus(vars.$color-primary-hover);
+    }
+  }
+
+  /* Modifier: Disabled state */
+  &--disabled {
+    background-color: vars.$color-text-gray-muted;
+    color: vars.$color-background-white;
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus-visible {
+      background-color: vars.$color-text-gray-muted;
+      transform: none;
+      outline: none;
+    }
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to(mobile, max) {
+    padding: vars.$padding-base;
+    height: 2.5rem; /* 40px */
+    font-size: vars.$font-size-small;
+  }
+}

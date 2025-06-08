@@ -1,0 +1,103 @@
+/**
+ * Input component styles
+ * Defines styling for form inputs with optional icons and password toggle
+ * Uses BEM methodology and integrates with global variables
+ * Accessibility Note: Ensures focus states are visible
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/* Input wrapper */
+.inputWrapper {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, 0);
+
+  /* Box Model */
+  position: relative;
+  width: 100%;
+}
+
+/* Input element */
+.input {
+  /* Layout */
+  display: block;
+
+  /* Box Model */
+  width: 100%;
+  padding: vars.$padding-base;
+  padding-left: 2.5rem; /* 40px to account for icon */
+  border: 1px solid vars.$color-border-input;
+  border-radius: vars.$border-radius-large;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-body;
+  line-height: 1.5;
+
+  /* Visual */
+  color: vars.$color-text-dark;
+  background-color: vars.$color-background-white;
+
+  /* Transitions */
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: vars.$color-primary;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: vars.$color-text-gray;
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    padding: vars.$padding-small;
+    padding-left: 2rem;
+    font-size: vars.$font-size-small;
+  }
+}
+
+/* Input icon */
+.inputIcon {
+  /* Layout */
+  position: absolute;
+  left: 0.75rem; /* 12px */
+
+  /* Box Model */
+  width: 1rem; /* 16px */
+  height: 1rem; /* 16px */
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    width: 0.875rem; /* 14px */
+    height: 0.875rem; /* 14px */
+  }
+}
+
+/* Eye button for password toggle */
+.eyeButton {
+  /* Layout */
+  position: absolute;
+  right: 0.75rem; /* 12px */
+  @include mixins.flex(row, center, center, 0);
+
+  /* Box Model */
+  border: none;
+  background: none;
+
+  /* Visual */
+  cursor: pointer;
+
+  img {
+    width: 1rem; /* 16px */
+    height: 1rem; /* 16px */
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}

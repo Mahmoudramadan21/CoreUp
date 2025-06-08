@@ -1,0 +1,174 @@
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+
+/**
+ * Search page styles
+ * Defines styling for the Search page with filters, search box, results, and pagination
+ * Uses BEM methodology, global variables, and mixins for consistency
+ * Accessibility Note: Ensures proper contrast and accessible layouts
+ */
+
+.search {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch);
+
+  // Typography
+  color: vars.$color-text-dark;
+
+  &__visuallyHidden {
+    // Layout
+    position: absolute;
+    width: 1px;
+    height: 1px;
+
+    // Box Model
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  &__filters {
+    // Layout
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: vars.$spacing-small;
+    // Alignment
+    align-items: end;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+    border: none;
+    border-radius: vars.$border-radius-small;
+
+    // Responsive
+    @include mixins.respond-to("mobile") {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__filtersButtons {
+    // Layout
+    @include mixins.flex(row, flex-start, center, vars.$spacing-medium);
+
+    // Box Model
+    width: 100%;
+  }
+
+  &__searchBox {
+    // Layout
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: vars.$spacing-small;
+    align-items: end;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+
+    // Responsive
+    @include mixins.respond-to("mobile") {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__results {
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  &__title {
+    // Typography
+    @include mixins.typography(vars.$font-size-title);
+
+    // Alignment
+    text-align: center;
+
+    // Box Model
+    margin: vars.$spacing-large 0 vars.$spacing-medium 0;
+  }
+
+  &__description {
+    // Typography
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-regular);
+    color: vars.$color-text-gray;
+    // Alignment
+    line-height: 1.6;
+    text-align: center;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  &__resultsHeader {
+    // Layout
+    @include mixins.flex(row, space-between, center);
+
+    // arrangement
+    width: 100%;
+    flex-wrap: wrap;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  &__count {
+    // Typography
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-medium);
+    // Colors
+    color: vars.$color-primary;
+
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+  }
+
+  &__display {
+    // Layout
+    @include mixins.flex(row, flex-start, center, vars.$spacing-small);
+  }
+
+  &__cardsWrapper {
+    // Layout
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(vars.$card-min-width, 1fr));
+    gap: vars.$spacing-medium;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+
+    // Responsive
+    @include mixins.respond-to("mobile") {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__noResults {
+    // Layout
+    text-align: center;
+
+    // Box Model
+    padding: vars.$spacing-medium;
+    background-color: vars.$color-background-light;
+    border-radius: vars.$border-radius-small;
+  }
+
+  &__pagination {
+    // Layout
+    @include mixins.flex(row, center, center, vars.$spacing-small);
+
+    // Box Model
+    margin-top: vars.$spacing-medium;
+  }
+
+  &__paginationCurrent {
+    // Typography
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-medium);
+    // Colors
+    color: vars.$color-primary;
+
+    // Box Model
+    padding: vars.$spacing-xsmall vars.$spacing-small;
+    border-radius: vars.$border-radius-small;
+    background-color: vars.$color-background-light;
+  }
+}

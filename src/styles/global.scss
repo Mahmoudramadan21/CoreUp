@@ -1,0 +1,58 @@
+/**
+ * Global SCSS file
+ * Defines base styles and container layout for the application
+ * Imports shared variables, mixins, reset, and fonts
+ */
+
+@use "./variables" as vars;
+@use "./mixins";
+@use "./base/reset";
+@use "./fonts";
+
+/* Base HTML styles */
+html {
+  /* Visual */
+  scroll-behavior: smooth;
+
+  /* Typography */
+  font-size: vars.$font-size-base;
+}
+
+/* Container block for consistent page width */
+.container {
+  /* Layout */
+  width: 100%;
+
+  /* Box Model */
+  padding-left: vars.$spacing-medium;
+  padding-right: vars.$spacing-medium;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+
+  /* Responsive breakpoints (mobile-first) */
+  @include mixins.respond-to("mobile", "min") {
+    /* Box Model */
+    max-width: 540px;
+  }
+
+  @include mixins.respond-to("tablet", "min") {
+    /* Box Model */
+    max-width: 720px;
+  }
+
+  @include mixins.respond-to("desktop", "min") {
+    /* Box Model */
+    max-width: 960px;
+  }
+
+  @media (min-width: 1280px) {
+    /* Box Model */
+    max-width: 1140px;
+  }
+
+  @media (min-width: 1536px) {
+    /* Box Model */
+    max-width: 1320px;
+  }
+}

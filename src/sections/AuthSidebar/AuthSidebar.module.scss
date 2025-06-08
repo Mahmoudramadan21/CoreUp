@@ -1,0 +1,37 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins";
+
+// AuthSidebar Component Styles
+// Accessibility: Ensures the sidebar is hidden on smaller screens for better usability.
+// Performance: Image is set to loading="eager" to prioritize LCP.
+
+.authauthSidebar {
+  // Layout
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.authSidebar__image {
+  // Layout
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // height: 100vh;
+  position: fixed;
+  left: -2px;
+
+  // Box Model
+  flex: 1;
+
+  img {
+    // Box Model
+    width: auto;
+    height: 100vh;
+  }
+  // Media Queries
+  @include mixins.respond-to("tablet") {
+    display: none;
+  }
+}

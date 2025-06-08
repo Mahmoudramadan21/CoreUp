@@ -1,0 +1,104 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+/**
+ * InvestorDashboardLayout component styles
+ * Defines styling for investor dashboard pages
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures visible focus states and sufficient contrast
+ */
+
+.investorDashboardLayout {
+  /* Layout */
+  @include mixins.flex(column, stretch, stretch);
+  min-height: 100vh;
+  background-color: vars.$color-dashboard-bg;
+}
+
+.investorDashboardLayout__main {
+  /* Layout */
+  @include mixins.flex(column, stretch, stretch);
+  flex-grow: 1;
+}
+
+.investorDashboardLayout__nav {
+  /* Box Model */
+  width: 100%;
+  background-color: vars.$color-background-white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.investorDashboardLayout__navContainer {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, vars.$spacing-small);
+  margin: 0 auto;
+  padding: 0 vars.$spacing-medium;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    padding: 0 vars.$spacing-small;
+    flex-wrap: wrap;
+  }
+}
+
+.investorDashboardLayout__navTab {
+  /* Box Model */
+  padding: vars.$padding-small;
+  margin: vars.$spacing-xsmall vars.$spacing-xsmall 0 vars.$spacing-xsmall;
+  border-bottom: vars.$focus-outline-width solid transparent;
+
+  /* Typography */
+  @include mixins.typography(
+    $size: vars.$font-size-body,
+    $weight: vars.$font-weight-medium
+  );
+  color: vars.$color-text-dark;
+  text-decoration: none;
+
+  /* Transitions */
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+
+  &:first-child {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  &:hover {
+    color: vars.$color-nav-active;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$color-nav-active;
+    outline-offset: vars.$focus-outline-offset;
+  }
+
+  /* Active state */
+  &Active {
+    border-bottom-color: vars.$color-nav-active;
+    color: vars.$color-nav-active;
+    // font-weight: vars.$font-weight-bold;
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    margin: vars.$spacing-xsmall 0.1875rem; /* 3px */
+    padding: vars.$padding-xsmall;
+    @include mixins.typography($size: vars.$font-size-small);
+  }
+}
+
+.investorDashboardLayout__content {
+  /* Layout */
+  flex-grow: 1;
+}
+
+.investorDashboardLayout__contentContainer {
+  /* Box Model */
+  padding: vars.$spacing-medium;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    padding: vars.$spacing-small;
+  }
+}

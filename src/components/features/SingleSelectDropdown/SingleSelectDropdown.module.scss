@@ -1,0 +1,100 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+// Dropdown container
+.singleSelectDropdown {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-xsmall);
+
+  // Box Model
+  width: 100%;
+
+  // Responsive adjustments
+  @include mixins.respond-to(mobile) {
+    min-width: unset;
+  }
+
+  // Invalid state
+  &__invalid {
+    .singleSelectDropdown__control {
+      border-color: vars.$color-error;
+    }
+  }
+
+  // Label
+  &__label {
+    // Typography
+    @include mixins.typography(vars.$font-size-base, vars.$font-weight-bold);
+    color: vars.$color-text-dark;
+
+    // Box Model
+    margin-bottom: vars.$spacing-xsmall;
+  }
+
+  // Select element
+  &__select {
+    .singleSelectDropdown__control {
+      // Box Model
+      padding: vars.$padding-xsmall;
+      border: 1px solid vars.$color-border-input;
+      border-radius: vars.$border-radius-small;
+
+      // Typography
+      @include mixins.typography(vars.$font-size-base);
+      color: vars.$color-text-dark;
+
+      // Visual
+      background-color: vars.$color-background-white;
+
+      &:hover {
+        border-color: vars.$color-primary;
+      }
+
+      &--is-focused {
+        border-color: vars.$color-primary;
+        box-shadow: 0 0 5px rgba(vars.$color-primary, 0.2);
+        outline: none;
+      }
+    }
+
+    .singleSelectDropdown__menu {
+      // Box Model
+      margin-top: vars.$spacing-xsmall;
+      border: 1px solid vars.$color-border-input;
+      border-radius: vars.$border-radius-small;
+
+      // Visual
+      background-color: vars.$color-background-white;
+    }
+
+    .singleSelectDropdown__option {
+      // Typography
+      @include mixins.typography(vars.$font-size-base);
+      color: vars.$color-text-dark;
+
+      &--is-focused {
+        background-color: vars.$color-background-light;
+      }
+
+      &--is-selected {
+        background-color: vars.$color-primary;
+        color: vars.$white;
+      }
+    }
+
+    .singleSelectDropdown__placeholder {
+      // Typography
+      color: vars.$color-text-gray-muted;
+    }
+  }
+
+  // Error message
+  &__error {
+    // Typography
+    @include mixins.typography(vars.$font-size-small);
+    color: vars.$color-error;
+
+    // Box Model
+    margin-top: vars.$spacing-xsmall;
+  }
+}

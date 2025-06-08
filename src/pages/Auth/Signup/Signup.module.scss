@@ -1,0 +1,121 @@
+.signup {
+  // Layout
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Box Model
+  width: 100%;
+  max-width: 400px;
+
+  // Title
+  &__title {
+    // Typography
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    text-align: center;
+
+    // Visual
+    color: #333;
+  }
+
+  // Subtitle
+  &__subtitle {
+    // Box Model
+    margin: 4px 28px 24px 28px;
+
+    // Typography
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+
+    // Visual
+    color: #666;
+  }
+
+  // Form
+  &__form {
+    // Layout
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    // Box Model
+    width: 100%;
+  }
+
+  // Role selection
+  &__role {
+    // Box Model
+    margin: 16px 0;
+
+    p {
+      // Typography
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+
+      // Visual
+      color: #333;
+    }
+  }
+
+  // Role options
+  &__roleOptions {
+    // Layout
+    display: flex;
+    gap: 16px;
+
+    // Box Model
+    margin-top: 8px;
+
+    label {
+      // Layout
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      // Typography
+      font-size: 14px;
+      line-height: 20px;
+
+      // Visual
+      color: #666;
+
+      input {
+        // Visual
+        accent-color: #007bff;
+      }
+    }
+  }
+
+  // Terms agreement
+  &__terms {
+    // Layout
+    display: flex;
+    align-items: start;
+    gap: 8px;
+
+    // Typography
+    font-size: 0.9rem;
+  }
+
+  // Terms checkbox
+  &__termsCheckbox {
+    // Box Model
+    margin-top: 5px;
+  }
+
+  // Terms link
+  &__termsLink {
+    // Typography
+    text-decoration: underline;
+    color: #28292b;
+
+    // Transitions
+    &:hover {
+      color: #000;
+    }
+  }
+}

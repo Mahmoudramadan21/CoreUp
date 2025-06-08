@@ -1,0 +1,205 @@
+@use "sass:color";
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * InvestorRegister page styles
+ * Defines styling for the investor registration form
+ * Uses BEM methodology, global variables, and mixins
+ * Accessibility Note: Ensures high contrast and accessible layouts
+ */
+
+.investorRegister {
+  // Layout
+  @include mixins.flex(column, flex-start, center, vars.$spacing-large);
+
+  // Box Model
+  margin: 0 auto;
+  padding: vars.$spacing-large;
+  width: 100%;
+
+  // Typography
+  text-align: center;
+
+  // Responsive
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-medium;
+  }
+}
+
+.investmentRange {
+  // Layout
+  @include mixins.flex(column, flex-start, center, vars.$spacing-small);
+
+  // Box Model
+  width: 100%;
+  max-width: 34rem;
+  margin-bottom: vars.$spacing-medium;
+
+  &__title {
+    // Typography
+    @include mixins.typography(vars.$font-size-heading, vars.$font-weight-bold);
+    color: vars.$color-text-light;
+
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+  }
+
+  &__description {
+    // Typography
+    @include mixins.typography(
+      vars.$font-size-description,
+      vars.$font-weight-regular
+    );
+    color: vars.$color-text-gray;
+    line-height: 1.4;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  > *:last-child {
+    width: 24rem !important;
+  }
+}
+
+.locationInput {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-xsmall);
+
+  // Box Model
+  width: 100%;
+  max-width: 42rem;
+  margin-bottom: vars.$spacing-medium;
+
+  &__title {
+    // Typography
+    @include mixins.typography(vars.$font-size-heading, vars.$font-weight-bold);
+    color: vars.$color-text-light;
+
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+  }
+
+  &__description {
+    // Typography
+    @include mixins.typography(
+      vars.$font-size-description,
+      vars.$font-weight-regular
+    );
+    color: vars.$color-text-gray;
+    line-height: 1.4;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  &Group {
+    // Layout
+    @include mixins.flex(column, flex-start, stretch, vars.$spacing-medium);
+  }
+}
+
+.industriesSelection {
+  // Layout
+  @include mixins.flex(column, flex-start, center, vars.$spacing-small);
+
+  // Box Model
+  width: 100%;
+  margin-bottom: vars.$spacing-medium;
+
+  &__title {
+    // Typography
+    @include mixins.typography(vars.$font-size-heading, vars.$font-weight-bold);
+    color: vars.$color-text-light;
+
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+    max-width: 42rem;
+  }
+
+  &__description {
+    // Typography
+    @include mixins.typography(
+      vars.$font-size-description,
+      vars.$font-weight-regular
+    );
+    color: vars.$color-text-gray;
+    line-height: 1.4;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+    max-width: 42rem;
+  }
+}
+
+.professionalBackground {
+  // Layout
+  @include mixins.flex(column, flex-start, center, vars.$spacing-small);
+
+  // Box Model
+  width: 100%;
+  max-width: 42rem;
+  margin-bottom: vars.$spacing-medium;
+
+  &__title {
+    // Typography
+    @include mixins.typography(vars.$font-size-heading, vars.$font-weight-bold);
+    color: vars.$color-text-light;
+
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+  }
+
+  &__description {
+    // Typography
+    @include mixins.typography(
+      vars.$font-size-description,
+      vars.$font-weight-regular
+    );
+    color: vars.$color-text-gray;
+    line-height: 1.5;
+
+    // Box Model
+    margin: vars.$spacing-small 0 vars.$spacing-medium;
+  }
+}
+
+.navigationButtons {
+  // Layout
+  @include mixins.flex(row, space-between, center, vars.$spacing-medium);
+
+  // Box Model
+  width: 100%;
+}
+
+.error {
+  // Typography
+  @include mixins.typography(vars.$font-size-small, vars.$font-weight-regular);
+  color: vars.$color-error;
+
+  // Box Model
+  margin-top: vars.$spacing-xsmall;
+  text-align: left;
+}
+
+// Responsive adjustments
+@include mixins.respond-to("mobile") {
+  .investmentRange,
+  .locationInput,
+  .industriesSelection,
+  .professionalBackground {
+    &__title {
+      font-size: vars.$font-size-large;
+    }
+
+    &__description {
+      font-size: vars.$font-size-body;
+    }
+  }
+
+  .navigationButtons {
+    flex-direction: column;
+    gap: vars.$spacing-small;
+  }
+}

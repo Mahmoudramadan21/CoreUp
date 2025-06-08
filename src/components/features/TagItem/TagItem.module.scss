@@ -1,0 +1,58 @@
+/**
+ * TagItem component styles
+ * Defines styling for tag components
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures sufficient contrast and focus states
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/* TagItem block */
+.tagItem {
+  /* Layout */
+  @include mixins.flex(row, center, center);
+
+  /* Box Model */
+  width: fit-content;
+  padding: vars.$spacing-small;
+  border-radius: 0.5rem; /* 8px */
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-body;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-tag-text;
+
+  /* Visual */
+  background-color: vars.$color-tag-bg;
+
+  /* Transitions */
+  transition: background-color 0.3s ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: vars.$color-background-light;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+
+  /* Modifier: large */
+  &--large {
+    /* Box Model */
+    padding: vars.$spacing-medium vars.$spacing-small;
+  }
+}
+
+/* Label element */
+.tagItem__label {
+  /* Box Model */
+  margin: 0;
+
+  /* Typography */
+  white-space: nowrap;
+}

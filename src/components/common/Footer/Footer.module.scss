@@ -1,0 +1,376 @@
+/**
+ * Footer component styles
+ * Defines layout and styling for footer sections, including columns, newsletter, and contact
+ * Uses BEM methodology and integrates with global variables/mixins
+ * Accessibility Note: Ensures sufficient contrast for text (e.g., $text-light-gray on $footer-bg)
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/* Footer block */
+.footer {
+  /* Box Model */
+  padding: vars.$spacing-large 0 vars.$spacing-medium;
+  min-height: 18.75rem; /* 300px */
+
+  /* Visual */
+  background-color: vars.$footer-bg;
+  color: vars.$text-light-gray;
+  contain: layout;
+}
+
+/* Footer container */
+.footer__container {
+  /* Box Model */
+  margin: 0 auto;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    /* Typography */
+    text-align: center;
+  }
+}
+
+/* Footer columns grid */
+.footer__columns {
+  /* Layout */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: vars.$spacing-large;
+
+  /* Box Model */
+  margin-bottom: vars.$spacing-medium;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("tablet", "max") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mixins.respond-to("mobile", "max") {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Footer column */
+.footer__column {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer column title */
+.footer__column-title {
+  /* Box Model */
+  margin-bottom: vars.$spacing-medium;
+
+  /* Typography */
+  font-size: vars.$font-size-body;
+  font-weight: vars.$font-weight-medium;
+  text-transform: uppercase;
+
+  /* Visual */
+  color: vars.$title-gray;
+}
+
+/* Footer column list */
+.footer__column-list {
+  /* Box Model */
+  padding: 0;
+}
+
+/* Footer column item */
+.footer__column-item {
+  /* Box Model */
+  margin-bottom: vars.$spacing-medium;
+}
+
+/* Footer column link */
+.footer__column-link {
+  /* Typography */
+  font-size: 0.95rem;
+
+  /* Visual */
+  color: vars.$text-light-gray;
+  text-decoration: none;
+
+  /* Transitions */
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: vars.$white;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Newsletter form */
+.footer__newsletter-form {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Newsletter input wrapper */
+.footer__newsletter-input-wrapper {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, vars.$spacing-small);
+
+  /* Box Model */
+  margin-bottom: vars.$spacing-medium;
+
+  /* Visual */
+  border: 1px solid vars.$white;
+  border-radius: vars.$border-radius-small;
+}
+
+/* Newsletter input */
+.footer__newsletter-input {
+  /* Layout */
+  flex-grow: 1;
+
+  /* Box Model */
+  padding: vars.$padding-base;
+
+  /* Typography */
+  font-size: vars.$font-size-body;
+
+  /* Visual */
+  color: vars.$white;
+  background-color: transparent;
+  border: none;
+
+  &::placeholder {
+    color: vars.$text-light-gray;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: vars.$blue;
+  }
+}
+
+/* Newsletter submit button */
+.footer__newsletter-button {
+  /* Box Model */
+  padding: vars.$padding-base;
+
+  /* Typography */
+  font-size: vars.$font-size-large;
+
+  /* Visual */
+  color: vars.$white;
+  background-color: vars.$blue;
+  border: none;
+  border-radius: 0 vars.$border-radius-small vars.$border-radius-small 0;
+  cursor: pointer;
+
+  /* Transitions */
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: vars.$blue-dark;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Newsletter description (hidden for screen readers) */
+.footer__newsletter-description {
+  /* Visual */
+  display: none;
+}
+
+/* Newsletter checkbox container */
+.footer__newsletter-checkbox {
+  /* Layout */
+  @include mixins.flex(row, flex-start, flex-start, vars.$spacing-small);
+}
+
+/* Newsletter checkbox input */
+.footer__newsletter-checkbox-input {
+  /* Box Model */
+  width: 1rem;
+  height: 1rem;
+
+  /* Visual */
+  accent-color: vars.$white;
+  background-color: transparent;
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Newsletter checkbox text */
+.footer__newsletter-checkbox-text {
+  /* Typography */
+  font-size: vars.$font-size-small;
+  line-height: 1.4;
+
+  /* Visual */
+  color: vars.$text-light-gray;
+}
+
+/* Newsletter "Read more" link */
+.footer__newsletter-link {
+  /* Visual */
+  color: vars.$white;
+  text-decoration: none;
+
+  /* Transitions */
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: vars.$color-primary;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Footer bottom section */
+.footer__bottom {
+  /* Layout */
+  @include mixins.flex(row, space-between, center, 0);
+
+  /* Box Model */
+  margin-bottom: vars.$spacing-large;
+  padding: vars.$spacing-medium 0;
+
+  /* Visual */
+  border: 1px solid #94a3b829;
+  border-right: none;
+  border-left: none;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    flex-direction: column;
+    gap: vars.$spacing-medium;
+    text-align: center;
+  }
+}
+
+/* Contact info container */
+.footer__contact {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, vars.$spacing-large);
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("tablet", "max") {
+    flex-direction: column;
+    gap: vars.$spacing-medium;
+  }
+}
+
+/* Follow us section */
+.footer__contact-follow {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, vars.$spacing-small);
+}
+
+/* Follow us label */
+.footer__contact-label {
+  /* Typography */
+  font-size: 0.95rem;
+
+  /* Visual */
+  color: vars.$text-light-gray;
+}
+
+/* Social media icon (LinkedIn) */
+.footer__contact-icon {
+  /* Typography */
+  font-size: vars.$font-size-large;
+
+  /* Visual */
+  color: vars.$text-light-gray;
+
+  /* Transitions */
+  transition: color 0.3s ease;
+
+  img {
+    /* Box Model */
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+  }
+
+  &:hover {
+    color: vars.$white;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Contact emails container */
+.footer__contact-emails {
+  /* Layout */
+  @include mixins.flex(row, flex-start, center, vars.$spacing-medium);
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("tablet", "max") {
+    flex-direction: column;
+    gap: vars.$spacing-small;
+  }
+}
+
+/* Contact email link */
+.footer__contact-email {
+  /* Typography */
+  font-size: 0.95rem;
+
+  /* Visual */
+  color: vars.$text-light-gray;
+  text-decoration: none;
+
+  /* Transitions */
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: vars.$white;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+
+/* Copyright notice */
+.footer__copyright {
+  /* Typography */
+  font-size: 0.95rem;
+
+  /* Visual */
+  color: vars.$text-light-gray;
+}
+
+/* Disclaimer text */
+.footer__disclaimer {
+  /* Typography */
+  font-size: vars.$font-size-small;
+  line-height: 1.5;
+  text-align: center;
+
+  /* Visual */
+  color: vars.$text-light-gray;
+}

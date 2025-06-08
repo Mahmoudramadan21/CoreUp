@@ -1,0 +1,119 @@
+/**
+ * Step component styles
+ * Defines styling for step components
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures sufficient contrast
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/* Step block */
+.step {
+  /* Layout */
+  @include mixins.flex(column, center, center, vars.$spacing-medium);
+  /* Position */
+  position: relative;
+
+  /* Box Model */
+  padding: vars.$spacing-medium;
+  /* Typography */
+  text-align: center;
+
+  /* Modifier: document */
+  &--document {
+    /* Visual */
+    background-color: vars.$color-background-white;
+    border-radius: 0.75rem; /* 12px */
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    &.step--document {
+      /* Visual */
+      background-color: transparent;
+    }
+  }
+}
+
+/* Icon element */
+.step__icon {
+  /* Layout */
+  @include mixins.flex(row, center, center);
+
+  /* css */
+  font-size: 24px;
+
+  /* Box Model */
+  width: vars.$icon-size;
+  height: vars.$icon-size;
+  margin-bottom: vars.$spacing-medium;
+  border-radius: 50%;
+  z-index: 100;
+
+  /* Visual */
+  background-color: #fff;
+
+  /* Modifier: document */
+  &--document {
+    /* Visual */
+    background-color: vars.$color-primary;
+  }
+}
+
+/* Title element */
+.step__title {
+  /* Box Model */
+  margin: 0;
+  margin-bottom: vars.$spacing-small;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-subtitle;
+  font-weight: vars.$font-weight-medium;
+  color: vars.$color-text-dark;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("tablet", "max") {
+    font-size: 1rem;
+  }
+}
+
+/* Description element */
+.step__description {
+  /* Box Model */
+  margin: 0;
+
+  /* Typography */
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-body;
+  line-height: 1.5;
+  color: vars.$color-text-gray;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("tablet", "max") {
+    font-size: 0.875rem;
+  }
+}
+
+/* Connector element */
+.step__connector {
+  /* Layout */
+  position: absolute;
+  top: 0;
+  right: -6.75rem;
+  z-index: 2;
+
+  /* Box Model */
+  transform: scale(0.9);
+
+  /* Modifier: horizontal */
+  &--horizontal {
+    top: 20%;
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("desktop", "max") {
+    display: none;
+  }
+}

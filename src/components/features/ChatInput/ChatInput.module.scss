@@ -1,0 +1,141 @@
+/**
+ * Styles for the Chat Input component
+ * Defines layout, responsive design, and visual styling for the input form
+ * Uses global variables from _variables.scss and mixins from _mixins.scss
+ * Optimized for performance, accessibility, and responsiveness
+ */
+
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+/**
+ * Root container for the chat input form
+ * Positions the input field and action wrapper
+ */
+.chatInput {
+  position: relative;
+  width: 100%;
+  padding: vars.$padding-small;
+  background-color: vars.$color-background-white;
+  @include mixins.border-radius($radius: vars.$border-radius-small);
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile") {
+    padding: vars.$padding-xsmall;
+  }
+}
+
+/**
+ * Text input field styles
+ * Provides a clean and responsive input for typing messages
+ */
+.chatInputField {
+  @include mixins.typography(
+    $size: vars.$font-size-body,
+    $weight: vars.$font-weight-regular
+  );
+  width: 100%;
+  padding: 1.5rem;
+  padding-right: calc(
+    vars.$icon-size-small * 2 + vars.$spacing-small * 2
+  ); /* Space for actions */
+  border: 1px solid transparent;
+  @include mixins.border-radius($radius: vars.$border-radius-large);
+  height: vars.$input-height;
+  background-color: vars.$color-background-gray-light;
+  transition: 0.2s ease;
+
+  &:focus {
+    border-color: vars.$color-border-input;
+    background-color: transparent;
+    outline: none;
+    border-color: vars.$color-primary;
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile") {
+    padding: vars.$padding-xsmall;
+    height: calc(vars.$input-height - 0.25rem);
+  }
+}
+
+/**
+ * Wrapper for action elements (file upload and send button)
+ * Positioned absolutely to the right of the input field
+ */
+.chatInputActions {
+  @include mixins.flex($direction: row, $align: center);
+  position: absolute;
+  top: 50%;
+  right: vars.$spacing-medium;
+  transform: translateY(-50%);
+}
+
+/**
+ * File upload label styles
+ * Wraps the hidden file input and visible icon
+ */
+.chatInputFileLabel {
+  position: relative;
+  cursor: pointer;
+  @include mixins.flex();
+}
+
+/**
+ * File input styles
+ * Hidden input for file uploads with restricted types
+ */
+.chatInputFile {
+  display: none;
+}
+
+/**
+ * File icon styles
+ * Displays the paperclip icon for file attachment
+ */
+.chatInputFileIcon {
+  width: vars.$icon-size-small;
+  height: vars.$icon-size-small;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+/**
+ * Send button styles
+ * Contains the send icon for message submission
+ */
+.chatInputSend {
+  @include mixins.button-base;
+  background-color: transparent;
+  @include mixins.border-radius($radius: 50%);
+  padding: vars.$padding-small;
+  transition: background-color 0.2s ease;
+
+  &:focus {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile") {
+    padding: vars.$padding-xsmall;
+  }
+}
+
+/**
+ * Send icon styles
+ * Displays the fast-forward icon for sending messages
+ */
+.chatInputSendIcon {
+  width: 1.6rem;
+  height: 1.6rem;
+}

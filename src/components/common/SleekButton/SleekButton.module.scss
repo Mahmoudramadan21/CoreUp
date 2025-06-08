@@ -1,0 +1,97 @@
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins" as mixins;
+
+/**
+ * SleekButton component styles
+ * Defines styling for reusable button component
+ * Uses BEM methodology, global variables, and mixins
+ * Accessibility Note: Ensures visible focus states
+ */
+
+.sleek-button {
+  // Layout
+  @include mixins.flex(row, center, center);
+  @include mixins.button-base;
+
+  // Box Model
+  height: vars.$button-height;
+  padding: vars.$padding-base;
+  border-radius: vars.$border-radius-small;
+
+  // Typography
+  @include mixins.typography(vars.$font-size-body, vars.$font-weight-medium);
+
+  // Visual
+  cursor: pointer;
+
+  // Transitions
+  transition: background-color 0.3s ease, transform 0.1s ease;
+
+  &:focus-visible {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+
+  // Variants
+  &--primary {
+    background-color: vars.$color-primary;
+    color: vars.$white;
+
+    &:hover:not(.sleek-button--disabled) {
+      background-color: vars.$color-primary-hover;
+    }
+  }
+
+  &--secondary {
+    background-color: vars.$color-background-light;
+    color: vars.$color-text-dark;
+    border: 1px solid vars.$color-border-input;
+
+    &:hover:not(.sleek-button--disabled) {
+      background-color: vars.$color-background-gray;
+    }
+  }
+
+  &--danger {
+    background-color: vars.$color-danger;
+    color: vars.$white;
+
+    &:hover:not(.sleek-button--disabled) {
+      background-color: vars.$color-danger-hover;
+    }
+  }
+
+  // Sizes
+  &--small {
+    padding: vars.$padding-small;
+    @include mixins.typography(vars.$font-size-small);
+  }
+
+  &--medium {
+    padding: vars.$padding-base;
+    @include mixins.typography(vars.$font-size-body);
+  }
+
+  &--large {
+    padding: vars.$padding-large;
+    @include mixins.typography(vars.$font-size-large);
+  }
+
+  // Disabled state
+  &--disabled {
+    background-color: vars.$color-text-gray;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  // Responsive
+  @include mixins.respond-to("tablet") {
+    &--medium,
+    &--large {
+      padding: vars.$padding-small;
+      @include mixins.typography(vars.$font-size-small);
+    }
+    width: 100%;
+  }
+}

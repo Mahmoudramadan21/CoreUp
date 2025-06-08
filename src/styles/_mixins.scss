@@ -1,0 +1,81 @@
+@use "sass:map";
+/**
+ * Reusable SCSS mixins
+ * Provides utilities for flexbox, media queries, button styles, typography, and border-radius
+ * Uses global variables for consistency
+ */
+
+@use "./variables" as vars;
+
+/* Flexible flexbox mixin */
+@mixin flex(
+  $direction: row,
+  $justify: center,
+  $align: center,
+  $gap: 0,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+  flex-wrap: $wrap;
+}
+
+/* Media query mixin with custom breakpoints */
+@mixin respond-to($size, $type: "max") {
+  $breakpoints: (
+    "xsmall": vars.$breakpoint-xsmall,
+    "mobile": vars.$breakpoint-mobile,
+    "tablet": vars.$breakpoint-tablet,
+    "desktop": vars.$breakpoint-desktop,
+  );
+  $breakpoint: map.get($breakpoints, $size);
+
+  @if $type == "max" {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  } @else if $type == "min" {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+/* Button base styles mixin */
+@mixin button-base {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: vars.$padding-base;
+  border: none;
+  border-radius: vars.$border-radius-large;
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-body;
+  font-weight: vars.$font-weight-bold;
+  white-space: nowrap;
+  background-color: vars.$color-primary;
+  color: vars.$white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Border radius mixin */
+@mixin border-radius($radius: vars.$border-radius-small) {
+  border-radius: $radius;
+}
+
+/* Typography base styles mixin */
+@mixin typography(
+  $size: vars.$font-size-body,
+  $weight: vars.$font-weight-medium,
+  $line-height: 1.5
+) {
+  font-family: vars.$font-family-base;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+}

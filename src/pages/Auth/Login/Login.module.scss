@@ -1,0 +1,180 @@
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins";
+
+// Login page styles
+.login {
+  // Layout
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Box Model
+  width: 100%;
+  // max-width: 400px;
+
+  // Responsive adjustments
+  @media (min-width: 992px) {
+    padding-left: 30vw;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+
+  &__container {
+    max-width: 400px;
+  }
+
+  // Title
+  &__title {
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+
+    // Typography
+    font-size: vars.$font-size-title;
+    font-weight: vars.$font-weight-bold;
+    line-height: 1.3;
+    text-align: center;
+    color: vars.$color-text-dark;
+
+    // Responsive adjustments
+    @include mixins.respond-to("mobile") {
+      font-size: clamp(1.5rem, 5vw, vars.$font-size-title);
+    }
+  }
+
+  // Subtitle
+  &__subtitle {
+    // Box Model
+    margin-bottom: vars.$spacing-large;
+
+    // Typography
+    font-size: vars.$font-size-body;
+    line-height: 1.5;
+    text-align: center;
+    color: vars.$color-text-gray;
+
+    // Responsive adjustments
+    @include mixins.respond-to("mobile") {
+      font-size: clamp(0.8rem, 2vw, vars.$font-size-body);
+    }
+  }
+
+  // Label
+  &__label {
+    // Box Model
+    margin-bottom: vars.$spacing-small;
+
+    // Typography
+    font-size: vars.$font-size-body;
+    color: vars.$color-text-dark;
+  }
+
+  // Form
+  &__form {
+    // Layout
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-medium;
+
+    // Box Model
+    width: 100%;
+  }
+
+  // Options
+  &__options {
+    // Layout
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  // Checkbox
+  &__checkbox {
+    // Layout
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    // Typography
+    font-size: vars.$font-size-body;
+    line-height: 1.5;
+    color: vars.$color-text-gray;
+
+    input {
+      // Visual
+      accent-color: vars.$color-primary;
+
+      // Box Model
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // Forgot password link
+  &__forgotLink {
+    // Typography
+    font-size: vars.$font-size-body;
+    line-height: 1.5;
+    text-decoration: none;
+    color: vars.$color-primary;
+
+    // Transitions
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: vars.$color-primary-hover;
+    }
+  }
+
+  // Divider
+  &__divider {
+    // Box Model
+    margin: vars.$spacing-large 0;
+
+    // Typography
+    font-size: vars.$font-size-body;
+    line-height: 1.5;
+    text-align: center;
+    color: vars.$color-text-gray;
+  }
+
+  // Social login options
+  &__social {
+    // Layout
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-medium;
+
+    // Box Model
+    width: 100%;
+  }
+
+  // Register text
+  &__register {
+    // Box Model
+    margin-top: vars.$spacing-large;
+
+    // Typography
+    font-size: vars.$font-size-body;
+    line-height: 1.5;
+    text-align: center;
+    color: vars.$color-text-gray;
+  }
+
+  // Register link
+  &__registerLink {
+    // Typography
+    text-decoration: none;
+    color: vars.$color-primary;
+
+    // Transitions
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: vars.$color-primary-hover;
+    }
+  }
+}

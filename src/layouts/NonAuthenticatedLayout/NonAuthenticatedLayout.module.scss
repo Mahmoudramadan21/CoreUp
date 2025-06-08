@@ -1,0 +1,30 @@
+/**
+ * NonAuthenticatedLayout component styles
+ * Defines styling for non-authenticated pages
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures sufficient contrast
+ */
+
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins";
+
+/* NonAuthenticatedLayout block */
+.nonAuthenticatedLayout {
+  /* Layout */
+  @include mixins.flex(column, stretch, stretch);
+  min-height: 100vh;
+}
+
+/* Main element */
+.nonAuthenticatedLayout__main {
+  /* Layout */
+  flex-grow: 1;
+
+  /* Box Model */
+  padding: vars.$spacing-medium;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to("mobile", "max") {
+    padding: vars.$spacing-small;
+  }
+}

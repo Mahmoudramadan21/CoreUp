@@ -1,0 +1,405 @@
+/**
+ * InvestorProfile.module.scss
+ *
+ * Styles for the InvestorProfile component using CSS Modules.
+ * Defines layout, card, avatar, interests, and connect button styles with responsive adjustments.
+ * Integrates with global variables and mixins for consistency.
+ *
+ * Author: Mahmoud Ramadan
+ * Created: June 2025
+ */
+
+@use "sass:color";
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/****************************
+ * Profile Container
+ * Main wrapper for the investor profile, centered with responsive padding and shadow.
+ ****************************/
+.profile {
+  @include mixins.flex(column, center, center, vars.$spacing-large);
+  @include mixins.border-radius;
+  background-color: vars.$color-background-white;
+  box-shadow: vars.$shadow-small;
+  padding: vars.$spacing-large;
+
+  // Responsive: Adjust padding for mobile screens
+  @include mixins.respond-to("mobile") {
+    padding: vars.$spacing-medium;
+  }
+}
+
+/****************************
+ * Investor Card
+ * Container for investor details with card styling and responsive padding.
+ ****************************/
+.investorCard {
+  @include mixins.border-radius;
+  background-color: vars.$color-background-white;
+  padding: vars.$spacing-large vars.$spacing-xlarge;
+  margin-bottom: vars.$spacing-large;
+
+  /****************************
+   * Top Section
+   * Header with avatar and identity details, flexible for responsiveness.
+   ****************************/
+  &__top {
+    @include mixins.flex(row, flex-start, center, vars.$spacing-medium);
+    margin-bottom: vars.$spacing-large;
+
+    // Responsive: Stack vertically on mobile
+    @include mixins.respond-to("mobile") {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  /****************************
+   * Avatar
+   * Circular avatar image container with fixed dimensions.
+   ****************************/
+  &__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /****************************
+   * Identity
+   * Container for name and location with consistent spacing.
+   ****************************/
+  &__identity {
+    @include mixins.flex(column, flex-start, flex-start, vars.$spacing-xsmall);
+  }
+
+  /****************************
+   * Name Row
+   * Flex container for name and flag with alignment.
+   ****************************/
+  &__nameRow {
+    @include mixins.flex(row, flex-start, center, 0.8rem);
+  }
+
+  /****************************
+   * Name
+   * Main heading for investor name with bold typography.
+   ****************************/
+  &__name {
+    @include mixins.typography(vars.$font-size-title, vars.$font-weight-bold);
+    margin: 0;
+    color: vars.$color-text-dark;
+  }
+
+  /****************************
+   * Flag
+   * Small flag image for country representation.
+   ****************************/
+  &__flag {
+    width: 24px;
+    height: 18px;
+  }
+
+  /****************************
+   * Location
+   * Uppercase text for investor's country.
+   ****************************/
+  &__location {
+    @include mixins.typography(
+      vars.$font-size-small,
+      vars.$font-weight-regular
+    );
+    color: vars.$color-text-gray;
+    text-transform: uppercase;
+  }
+
+  /****************************
+   * Body
+   * Main content area with flex layout for info and about sections.
+   ****************************/
+  &__body {
+    @include mixins.flex(row, space-between, flex-start, vars.$spacing-medium);
+
+    // Responsive: Stack vertically on tablet
+    @include mixins.respond-to("tablet") {
+      flex-direction: column;
+    }
+  }
+
+  /****************************
+   * Info Section
+   * Container for investment range, joined date, role, and location.
+   ****************************/
+  &__info {
+    @include mixins.flex(column, flex-start, flex-start, vars.$spacing-medium);
+    flex-wrap: wrap;
+  }
+
+  /****************************
+   * Info Item
+   * Individual info item with icon and text.
+   ****************************/
+  &__infoItem {
+    @include mixins.flex(row, flex-start, center, 1rem);
+
+    h4 {
+      @include mixins.typography(
+        vars.$font-size-body,
+        vars.$font-weight-regular
+      );
+      color: vars.$color-text-light;
+      margin: 0;
+    }
+
+    p {
+      @include mixins.typography(
+        vars.$font-size-small,
+        vars.$font-weight-regular
+      );
+      color: vars.$color-text-gray;
+      margin: 0;
+    }
+  }
+
+  /****************************
+   * Investment Range Item
+   * Specialized info item for investment range with vertical layout.
+   ****************************/
+  &__infoItemRange {
+    @include mixins.flex(column, flex-start, flex-start, 9px);
+    margin-bottom: 0.8rem;
+
+    p {
+      @include mixins.typography(
+        vars.$font-size-large,
+        vars.$font-weight-regular
+      );
+    }
+  }
+
+  /****************************
+   * Info Icon
+   * Small icon for info items (calendar, person, world).
+   ****************************/
+  &__infoIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /****************************
+   * Info Text
+   * Text for info items with consistent styling.
+   ****************************/
+  &__infoText {
+    @include mixins.typography(
+      vars.$font-size-small,
+      vars.$font-weight-regular
+    );
+    color: vars.$color-text-gray;
+  }
+
+  /****************************
+   * About Section
+   * Container for investor's about me description.
+   ****************************/
+  &__about {
+    margin-bottom: vars.$spacing-medium;
+  }
+
+  /****************************
+   * About Title
+   * Heading for about section with bold typography.
+   ****************************/
+  &__aboutTitle {
+    @include mixins.typography(
+      vars.$font-size-subtitle,
+      vars.$font-weight-bold
+    );
+    color: vars.$color-text-light;
+    margin-bottom: vars.$spacing-small;
+  }
+
+  /****************************
+   * About Text
+   * Descriptive text for about section with readable line height.
+   ****************************/
+  &__aboutText {
+    @include mixins.typography(
+      vars.$font-size-body,
+      vars.$font-weight-regular,
+      1.5
+    );
+    color: vars.$color-text-gray-muted;
+    max-width: 600px;
+  }
+}
+
+/****************************
+ * Companies Section
+ * Container for companies list with title and placeholder text.
+ ****************************/
+.profile__companies {
+  margin-bottom: vars.$spacing-medium;
+
+  /****************************
+   * Companies Title
+   * Heading for companies section.
+   ****************************/
+  &__title {
+    @include mixins.typography(
+      vars.$font-size-subtitle,
+      vars.$font-weight-bold
+    );
+    color: vars.$color-text-light;
+    margin-bottom: vars.$spacing-small;
+    padding: vars.$spacing-medium vars.$spacing-xlarge;
+  }
+
+  /****************************
+   * Companies Text
+   * Placeholder text when no companies are added.
+   ****************************/
+  &__text {
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-regular);
+    color: vars.$color-text-gray;
+    padding: vars.$spacing-medium vars.$spacing-xlarge;
+    background-color: vars.$color-background-white;
+  }
+}
+
+/****************************
+ * Interests Section
+ * Container for interests with subsections for industries, stages, etc.
+ ****************************/
+.profile__interests {
+  margin-bottom: vars.$spacing-medium;
+
+  /****************************
+   * Interests Title
+   * Main heading for interests section.
+   ****************************/
+  &__title {
+    @include mixins.typography(
+      vars.$font-size-subtitle,
+      vars.$font-weight-bold
+    );
+    color: vars.$color-text-light;
+    margin-bottom: vars.$spacing-small;
+    padding: vars.$spacing-medium vars.$spacing-xlarge;
+  }
+
+  /****************************
+   * Interests Subsection
+   * Container for all interest categories with consistent spacing.
+   ****************************/
+  &__section {
+    @include mixins.flex(column, flex-start, flex-start, vars.$spacing-medium);
+    padding: vars.$spacing-large vars.$spacing-xlarge;
+    background-color: vars.$color-background-white;
+  }
+
+  /****************************
+   * Industries, Stages, Keywords, Locations, Countries
+   * Shared styles for interest subsections.
+   ****************************/
+  &__industries,
+  &__stages,
+  &__keywords,
+  &__locations,
+  &__countries {
+    /****************************
+     * Subsection Title
+     * Heading for each interest category.
+     ****************************/
+    &__title {
+      @include mixins.typography(
+        vars.$font-size-body,
+        vars.$font-weight-regular
+      );
+      color: vars.$color-text-light;
+      margin-bottom: 1rem;
+    }
+
+    /****************************
+     * Subsection List
+     * Flex container for tag items with wrapping.
+     ****************************/
+    &__list {
+      @include mixins.flex(row, flex-start, center, 1rem);
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
+    }
+
+    /****************************
+     * Subsection Text
+     * Placeholder text for empty keywords.
+     ****************************/
+    &__text {
+      @include mixins.typography(
+        vars.$font-size-body,
+        vars.$font-weight-regular
+      );
+      color: vars.$color-text-gray;
+    }
+  }
+}
+
+/****************************
+ * Connect Section
+ * Call-to-action section for connecting with the investor.
+ ****************************/
+.profile__connect {
+  @include mixins.flex(column, center, center, vars.$spacing-medium);
+  margin: vars.$spacing-large 0;
+
+  /****************************
+   * Connect Title
+   * Heading for connect section with large typography.
+   ****************************/
+  &__title {
+    @include mixins.typography(vars.$font-size-title, vars.$font-weight-bold);
+    color: vars.$color-text-light;
+  }
+
+  /****************************
+   * Connect Text
+   * Descriptive text for connect section.
+   ****************************/
+  &__text {
+    @include mixins.typography(
+      vars.$font-size-description,
+      vars.$font-weight-regular
+    );
+    color: vars.$color-text-gray;
+    margin: 0.8rem 0 1.6rem;
+  }
+
+  /****************************
+   * Connect Button
+   * Button for initiating contact with hover and focus states.
+   ****************************/
+  &__button {
+    @include mixins.button-base;
+    border-radius: 0.4rem;
+    padding: vars.$padding-large;
+    background-color: vars.$color-primary;
+    color: vars.$white;
+
+    &:hover {
+      background-color: vars.$color-primary-hover;
+    }
+
+    &:focus {
+      outline: vars.$focus-outline-width vars.$focus-outline-style
+        vars.$focus-outline-color;
+      outline-offset: vars.$focus-outline-offset;
+    }
+  }
+}

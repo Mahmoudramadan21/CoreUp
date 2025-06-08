@@ -1,0 +1,170 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+/**
+ * Portfolio component styles
+ * Defines styling for the investor portfolio page
+ * Uses BEM methodology and global variables/mixins
+ * Accessibility Note: Ensures visible focus states and sufficient contrast
+ */
+
+.portfolio {
+  // Layout
+  @include mixins.flex(column, stretch, stretch, vars.$spacing-medium);
+
+  &__visuallyHidden {
+    // Layout
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  &__stats {
+    // Layout
+    @include mixins.flex(row, space-between, stretch, vars.$spacing-medium);
+    flex-wrap: wrap;
+
+    // Box Model
+    > * {
+      flex: 1;
+      min-width: vars.$card-min-width; // 300px from variables
+    }
+
+    // Responsive adjustments
+    @include mixins.respond-to(tablet) {
+      gap: vars.$spacing-small;
+    }
+
+    @include mixins.respond-to(mobile) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__requests {
+    // Box Model
+    background-color: vars.$color-background-white;
+    border-radius: vars.$border-radius-small;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    padding: vars.$spacing-medium;
+
+    // Responsive adjustments
+    @include mixins.respond-to(mobile) {
+      padding: vars.$spacing-small;
+    }
+  }
+
+  &__tabs {
+    // Layout
+    @include mixins.flex(row, center, center, vars.$spacing-small);
+    border-bottom: 1px solid #e2e8f0;
+
+    // Box Model
+    margin-bottom: vars.$spacing-medium;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    // Responsive adjustments
+    @include mixins.respond-to(mobile) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__tab {
+    // Layout
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    // Box Model
+    padding: vars.$padding-small;
+    margin: 0 vars.$spacing-small;
+    border-bottom: vars.$focus-outline-width solid transparent;
+
+    // Typography
+    @include mixins.typography(vars.$font-size-body, vars.$font-weight-medium);
+    color: vars.$color-text-dark;
+
+    // Transitions
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+
+    // Hover and focus states
+    &:hover {
+      color: vars.$color-nav-active;
+    }
+
+    &:focus-visible {
+      outline: vars.$focus-outline-width vars.$focus-outline-style
+        vars.$color-nav-active;
+      outline-offset: vars.$focus-outline-offset;
+    }
+
+    // Responsive adjustments
+    @include mixins.respond-to(mobile) {
+      padding: vars.$padding-xsmall;
+      margin: 0 vars.$spacing-xsmall;
+      @include mixins.typography(vars.$font-size-small);
+    }
+
+    // Active state
+    &Active {
+      color: vars.$color-nav-active;
+      border-bottom-color: vars.$color-nav-active;
+      // font-weight: vars.$font-weight-bold;
+    }
+  }
+
+  &__tabpanel {
+    // Layout
+    display: block;
+  }
+
+  &__noRequests,
+  &__noConnections {
+    // Layout
+    @include mixins.flex(column, center, center);
+
+    // Box Model
+    background-color: vars.$color-content-bg;
+    border-radius: vars.$border-radius-small;
+    padding: vars.$spacing-medium;
+
+    // Typography
+    @include mixins.typography(vars.$font-size-body);
+    color: vars.$color-text-gray;
+    text-align: center;
+  }
+
+  &__connectionRequests,
+  &__connections {
+    // Layout
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(vars.$card-min-width, 1fr));
+    gap: vars.$spacing-medium;
+
+    // Responsive adjustments
+    @include mixins.respond-to(tablet) {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    @include mixins.respond-to(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__loading {
+    // Layout
+    @include mixins.flex(column, center, center);
+
+    // Typography
+    @include mixins.typography(vars.$font-size-body);
+    color: vars.$color-text-gray;
+    text-align: center;
+    padding: vars.$spacing-medium;
+  }
+}

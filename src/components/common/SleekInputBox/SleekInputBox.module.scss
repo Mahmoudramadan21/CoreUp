@@ -1,0 +1,75 @@
+@use "@/styles/variables" as vars;
+@use "@/styles/mixins" as mixins;
+
+// Input field container
+.sleekInputBox {
+  // Layout
+  @include mixins.flex(column, flex-start, stretch, vars.$spacing-xsmall);
+
+  // Box Model
+  width: 100%;
+
+  // Typography
+  font-family: vars.$font-family-base;
+  text-align: left;
+
+  // Invalid state
+  &__invalid {
+    .sleekInputBox__input {
+      border-color: vars.$color-error;
+    }
+  }
+
+  // Label
+  &__label {
+    // Typography
+    @include mixins.typography(vars.$font-size-base, vars.$font-weight-bold);
+    color: vars.$color-text-dark;
+
+    // Box Model
+    margin-bottom: vars.$spacing-xsmall;
+  }
+
+  // Input field
+  &__input {
+    // Box Model
+    width: 100%;
+    padding: vars.$padding-input;
+    border: 1px solid vars.$color-border-input;
+    border-radius: vars.$border-radius-small;
+
+    // Typography
+    @include mixins.typography(vars.$font-size-base);
+    color: vars.$color-text-dark;
+
+    // Visual
+    background-color: vars.$color-background-white;
+
+    // Transitions
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      border-color: vars.$color-primary;
+    }
+
+    &:focus {
+      border-color: vars.$color-primary;
+      box-shadow: 0 0 5px rgba(vars.$color-primary, 0.2);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: vars.$color-text-gray-muted;
+    }
+  }
+
+  // Error message
+  &__error {
+    // Typography
+    @include mixins.typography(vars.$font-size-small);
+    color: vars.$color-error;
+
+    // Box Model
+    margin-top: vars.$spacing-xsmall;
+  }
+}

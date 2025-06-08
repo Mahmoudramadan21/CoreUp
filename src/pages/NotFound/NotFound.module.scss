@@ -1,0 +1,73 @@
+/**
+ * NotFound.module.scss
+ *
+ * Styles for the NotFound component using CSS Modules.
+ * Defines styling for the 404 error page with centered content and responsive design.
+ * Integrates with global variables and mixins for consistency.
+ * Accessibility Note: Ensures sufficient contrast for text.
+ *
+ * Author: Mahmoud Ramadan
+ * Created: June 2025
+ */
+
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+/* NotFound block */
+.notFound {
+  /* Layout */
+  @include mixins.flex(column, center, center, vars.$spacing-medium);
+  min-height: 100vh;
+  text-align: center;
+
+  /* Box Model */
+  padding: vars.$spacing-large;
+  background-color: vars.$color-background;
+
+  /* Responsive adjustments */
+  @include mixins.respond-to(mobile, max) {
+    padding: vars.$spacing-medium;
+    gap: vars.$spacing-small;
+  }
+
+  /* Element: Title */
+  &__title {
+    /* Typography */
+    @include mixins.typography(
+      vars.$font-size-title,
+      vars.$font-weight-bold,
+      1.2
+    );
+    color: vars.$color-text-dark;
+    margin: 0;
+
+    /* Responsive adjustments */
+    @include mixins.respond-to(mobile, max) {
+      font-size: vars.$font-size-heading;
+    }
+  }
+
+  /* Element: Subtitle */
+  &__subtitle {
+    /* Typography */
+    @include mixins.typography(
+      vars.$font-size-body,
+      vars.$font-weight-regular,
+      1.4
+    );
+    color: vars.$color-text-gray;
+    margin: 0 0 vars.$spacing-large 0;
+
+    /* Responsive adjustments */
+    @include mixins.respond-to(mobile, max) {
+      font-size: vars.$font-size-small;
+      margin-bottom: vars.$spacing-medium;
+    }
+  }
+
+  /* Element: Button */
+  &__button {
+    /* Box Model */
+    max-width: 12rem;
+  }
+}

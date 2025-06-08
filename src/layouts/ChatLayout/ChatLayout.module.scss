@@ -1,0 +1,265 @@
+/**
+ * Styles for the ChatLayout component
+ * Defines layout and visual styling for the sidebar and chat area container
+ * Uses global variables from _variables.scss and mixins from _mixins.scss
+ * Optimized for performance, accessibility, and responsiveness
+ */
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins";
+/* Root container for the chat layout */
+.chatLayout {
+  @include mixins.flex($direction: row, $align: start, $gap: 0);
+  min-height: calc(100vh - vars.$header-height - vars.$footer-height);
+  background-color: vars.$color-background-light;
+  position: relative;
+  /* Adjust layout for tablet screens and below */
+  @include mixins.respond-to("tablet") {
+    @include mixins.flex($direction: column);
+    min-height: none;
+  }
+}
+/* Menu button styles */
+.menuButton {
+  display: none;
+  position: absolute;
+  top: vars.$spacing-small;
+  left: vars.$spacing-small;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: vars.$padding-xsmall;
+  /* Show menu button on tablet and below */
+  @include mixins.respond-to("tablet") {
+    display: block;
+  }
+  &:focus {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+/* Menu icon styles */
+.menuIcon {
+  width: vars.$icon-size-small;
+  height: vars.$icon-size-small;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+/* Sidebar component styles */
+.sidebar {
+  width: 300px;
+  min-height: 100vh;
+  position: sticky;
+  top: 102px;
+  left: 0;
+  background-color: vars.$color-background-white;
+  padding: vars.$spacing-medium;
+  border-right: 1px solid vars.$color-auth-border;
+  transition: transform 0.3s ease-in-out;
+  /* Full-width layout on tablet screens, hidden by default */
+  @include mixins.respond-to("tablet") {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid vars.$color-auth-border;
+    padding: vars.$spacing-small;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+  /* Further adjustments for extra small screens */
+  @include mixins.respond-to("xsmall") {
+    padding: vars.$spacing-xsmall;
+  }
+}
+/* Sidebar open state styles */
+.sidebarOpen {
+  @include mixins.respond-to("tablet") {
+    transform: translateX(0);
+  }
+}
+.sidebar__header {
+  @include mixins.flex($justify: space-between, $align: center);
+}
+/* Title for the sidebar conversation list */
+.sidebar__title {
+  @include mixins.typography(
+    $size: vars.$font-size-heading,
+    $weight: vars.$font-weight-medium
+  );
+  color: vars.$color-text-dark;
+  margin-bottom: vars.$spacing-medium;
+  /* Responsive typography for mobile screens */
+  @include mixins.respond-to("mobile") {
+    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  }
+  /* Extra small screen adjustments */
+  @include mixins.respond-to("xsmall") {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+  }
+}
+/* Menu icon within the sidebar */
+.sidebar__menuIcon {
+  width: vars.$icon-size-small;
+  height: vars.$icon-size-small;
+  cursor: pointer;
+  margin-bottom: vars.$spacing-medium;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:focus {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+/* Search container styles */
+.sidebar__search {
+  position: relative;
+  margin-bottom: vars.$spacing-medium;
+}
+/* Search input field styles */
+.sidebar__searchInput {
+  @include mixins.typography(
+    $size: vars.$font-size-body,
+    $weight: vars.$font-weight-regular
+  );
+  width: 100%;
+  padding: vars.$padding-input vars.$padding-input vars.$padding-input 2rem;
+  border: 1px solid vars.$color-border-input;
+  border-radius: vars.$border-radius-small;
+  background-color: vars.$color-background-white;
+  &:focus {
+    outline: vars.$focus-outline-width vars.$focus-outline-style
+      vars.$focus-outline-color;
+    outline-offset: vars.$focus-outline-offset;
+  }
+}
+.sidebar__searchIcon {
+  position: absolute;
+  top: 50%;
+  left: 0.5rem;
+  transform: translateY(-50%);
+  width: vars.$icon-size-small;
+  height: vars.$icon-size-small;
+}
+/* Individual message item styles */
+.sidebar__message {
+  @include mixins.flex(
+    $direction: row,
+    $align: center,
+    $gap: vars.$spacing-small
+  );
+  padding: vars.$padding-small;
+  border-radius: vars.$border-radius-small;
+  cursor: pointer;
+  color: vars.$color-text-gray;
+  transition: background-color 0.2s ease;
+  &:hover,
+  &:focus {
+    background-color: vars.$color-background-gray;
+    color: vars.$color-text-dark;
+    outline: none;
+  }
+  /* Adjustments for mobile screens */
+  @include mixins.respond-to("mobile") {
+    padding: vars.$padding-xsmall;
+  }
+}
+/* Avatar image styles */
+.sidebar__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+/* Message content container styles */
+.sidebar__messageContent {
+  @include mixins.flex(
+    $direction: column,
+    $align: start,
+    $gap: vars.$spacing-xxsmall
+  );
+  flex: 1;
+  overflow: hidden;
+}
+/* Message name styles */
+.sidebar__messageName {
+  @include mixins.typography(
+    $size: vars.$font-size-body,
+    $weight: vars.$font-weight-bold
+  );
+  color: vars.$color-text-dark;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Message text styles */
+.sidebar__messageText {
+  @include mixins.typography(
+    $size: vars.$font-size-small,
+    $weight: vars.$font-weight-regular
+  );
+  color: vars.$color-text-gray-muted;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Message metadata container styles */
+.sidebar__messageMeta {
+  @include mixins.flex(
+    $direction: column,
+    $align: flex-end,
+    $gap: vars.$spacing-xxsmall
+  );
+  min-width: 50px;
+}
+/* Message date styles */
+.sidebar__messageDate {
+  @include mixins.typography(
+    $size: vars.$font-size-xsmall,
+    $weight: vars.$font-weight-regular
+  );
+  color: vars.$color-text-gray;
+}
+/* Unread message indicator styles */
+.sidebar__messageUnread {
+  width: vars.$dot-size;
+  height: vars.$dot-size;
+  background-color: vars.$color-unread-badge;
+  border-radius: 50%;
+}
+/* Chat area container styles */
+.chatArea {
+  @include mixins.flex(
+    $direction: column,
+    $justify: space-between,
+    $align: normal
+  );
+  flex: 1;
+  height: 100vh;
+  background-color: vars.$color-background-white;
+  /* Ensure chat area is visible when sidebar is open on mobile */
+  @include mixins.respond-to("tablet") {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+/* Placeholder for when no chat is selected */
+.chatAreaPlaceholder {
+  @include mixins.flex($direction: column, $justify: center, $align: center);
+  flex: 1;
+  @include mixins.typography(
+    $size: vars.$font-size-body,
+    $weight: vars.$font-weight-regular
+  );
+  color: vars.$color-text-gray;
+  // padding: vars.$padding-medium;
+  text-align: center;
+  @include mixins.respond-to("mobile") {
+    padding: vars.$padding-small;
+  }
+}
